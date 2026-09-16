@@ -1033,7 +1033,12 @@
       }
 
       if (VIDEO_MAP[feedKey]) {
+        enlargedVideo.muted = true;
         enlargedVideo.src = VIDEO_MAP[feedKey];
+        const cardVideo = document.querySelector('#card-' + feedKey + ' video');
+        if (cardVideo && cardVideo.currentTime) {
+          try { enlargedVideo.currentTime = cardVideo.currentTime; } catch(e) {}
+        }
         enlargedVideo.play().catch(() => {});
       }
 
