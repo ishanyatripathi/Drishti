@@ -1,4 +1,4 @@
-﻿# Drishti: Intelligent Border Video Analytics Platform (Frontend Showcase)
+# Drishti: Intelligent Border Video Analytics Platform (Frontend Showcase)
 
 [![Live Status](https://img.shields.io/badge/Status-Static%20Showcase-blue?style=for-the-badge)](https://github.com/ishanyatripathi/Drishti)
 [![Main Codebase](https://img.shields.io/badge/Core%20Repository-ShreyaB002%2FDrishti--orange?style=for-the-badge&logo=github)](https://github.com/ShreyaB002/Drishti-)
@@ -29,7 +29,7 @@ This static frontend mirrors the exact production user interface of the Drishti 
    - **Cam 1 (Virtual Fence)**: Polygon-restricted perimeter boundary monitoring with real-time intrusion alarms.
    - **Cam 2 (Vehicle Tracking)**: Multi-class vehicle tracking (cars, trucks, buses, motorcycles) with unique trajectory tracking IDs.
    - **Cam 3 (Human Detection)**: Perimeter pedestrian movement surveillance and patrol tracking.
-   - **Cam 4 (ANPR Engine)**: Automatic Number Plate Recognition featuring tactical HUD overlays and license plate readouts.
+   - **Cam 4**: Vehicle checkpoint monitoring and tactical HUD.
    - **Cam 5 (Suspicious Activity)**: Nighttime loitering and curfew intrusion detection in critical blind spots.
    - **Cam 6 (Facial Recognition)**: Edge-based biometric face matching against verified security watchlists.
 
@@ -74,7 +74,7 @@ Then visit `http://localhost:8080` in your web browser.
     ├── Cam1.mp4                # Virtual Fence Restricted Zone Intrusion (H.264)
     ├── Cam2.mp4                # Multi-Class Vehicle Detection & Tracking (H.264)
     ├── Cam3.mp4                # Perimeter Human Detection (H.264)
-    ├── Cam4.mp4                # ANPR License Plate Recognition & HUD (H.264)
+    ├── Cam4.mp4                # Vehicle Checkpoint Surveillance & HUD (H.264)
     ├── Cam5.mp4                # Suspicious Activity Detection (H.264)
     ├── Cam6.mp4                # Facial Recognition & Verification (H.264)
     ├── product_logo.png        # Drishti product logo
