@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-  <title>Drishti · Intelligent Border Video Analytics Platform</title>
+  <title>Drishti · Ministry of Home Affairs · Border Video Analytics Platform</title>
   <link rel="icon" type="image/png" href="assets/favion.png">
   <link rel="shortcut icon" type="image/png" href="assets/favion.png">
   <style>
@@ -34,115 +34,200 @@
     .top-nav-container {
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 25;
       background: #ffffff;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     }
-    /* ── GOI National Official Identity Bar ── */
-    .gov-strip {
-      background: #0b1329;
-      color: #e2e8f0;
+
+    /* ── 1. Top Utility & Accessibility Bar (GOI Standard) ── */
+    .gov-top-utility {
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
       font-size: 11.5px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      color: #334155;
     }
-    .gov-strip-inner {
-      display: flex;
-      align-items: center;
-      padding: 5px 24px;
-      max-width: 1400px;
+    .gov-top-inner {
+      max-width: 1440px;
       margin: 0 auto;
+      padding: 4px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .gov-left {
+    .gov-utility-left {
       display: flex;
       align-items: center;
       gap: 8px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .gov-flag-icon {
-      font-size: 16px;
-      line-height: 1;
-      display: inline-block;
-      flex-shrink: 0;
-    }
-    .gov-badge-in {
       font-weight: 700;
-      color: #fdba74;
     }
-    .gov-divider {
-      color: #475569;
+    .gov-lang-hi {
+      color: #0f172a;
+      font-size: 12px;
     }
-    .gov-bullet {
-      color: #64748b;
-      font-size: 7px;
-    }
-    .gov-mha {
+    .gov-sep {
       color: #94a3b8;
+      font-weight: 300;
     }
+    .gov-lang-en {
+      color: #1e293b;
+      letter-spacing: 0.03em;
+    }
+    .gov-utility-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .gov-skip-link {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+    }
+    .gov-skip-link:hover {
+      text-decoration: underline;
+    }
+    .gov-util-item {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      color: #334155;
+      transition: color 0.15s;
+    }
+    .gov-util-item:hover {
+      color: #0284c7;
+    }
+    .gov-text-size-tools {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      font-weight: 700;
+      font-size: 11px;
+    }
+    .gov-text-size-tools span {
+      cursor: pointer;
+      padding: 1px 3px;
+    }
+    .gov-text-size-tools span:hover {
+      color: #2563eb;
+    }
+    .gov-social-icons {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .gov-social-icons a {
+      color: #475569;
+      display: inline-flex;
+      align-items: center;
+    }
+    .gov-social-icons a:hover {
+      color: #0284c7;
+    }
+    .gov-lang-select {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #0f172a;
+    }
+
+    /* ── 2. Tricolor Ribbon ── */
     .gov-tricolor {
       height: 4px;
       width: 100%;
       background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%, #138808 100%);
     }
 
-    /* Main Navigation Header */
-    header {
+    /* ── 3. Main Ministry of Home Affairs Header ── */
+    .mha-main-header {
+      background: #ffffff;
+      padding: 10px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 24px;
-      background: #ffffff;
-      border-bottom: 1px solid var(--border);
-      gap: 12px;
+      gap: 16px;
+      max-width: 1440px;
+      margin: 0 auto;
     }
-    .brand {
+    .mha-brand-flank {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
       min-width: 0;
-      flex: 1 1 auto;
     }
-    .brand-logo {
-      height: 38px;
-      width: auto;
-      max-width: 140px;
-      object-fit: contain;
-      display: block;
-      flex-shrink: 0;
-    }
-    .brand-text {
+    .mha-emblem-wrap {
       display: flex;
       flex-direction: column;
-      gap: 2px;
-      min-width: 0;
+      align-items: center;
+      flex-shrink: 0;
     }
-    .brand-title {
-      font-size: 16.5px;
+    .mha-emblem-svg {
+      height: 66px;
+      width: auto;
+      display: block;
+    }
+    .mha-titles {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1.15;
+    }
+    .mha-title-hi {
+      font-size: 19px;
       font-weight: 700;
-      margin: 0;
-      color: var(--text-main);
-      line-height: 1.2;
+      color: #0f172a;
+      letter-spacing: 0.01em;
+    }
+    .mha-title-en-sub {
+      font-size: 12px;
+      font-weight: 600;
+      color: #475569;
+      letter-spacing: 0.08em;
+      margin-top: 1px;
+    }
+    .mha-title-en-main {
+      font-size: 20px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: 0.05em;
+    }
+
+    .mha-vertical-divider {
+      width: 1.5px;
+      height: 52px;
+      background: #cbd5e1;
+      flex-shrink: 0;
+    }
+
+    /* Drishti Badge within MHA Header */
+    .drishti-header-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .drishti-title-row {
       display: flex;
       align-items: center;
       gap: 8px;
-      white-space: nowrap;
     }
-    .brand-sub {
-      font-size: 11px;
-      color: var(--text-muted);
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .drishti-logo-text {
+      font-size: 16.5px;
+      font-weight: 800;
+      color: #1e3a8a;
+      letter-spacing: 0.06em;
     }
     .badge-live {
       display: inline-flex;
       align-items: center;
       gap: 5px;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       color: #15803d;
       background: #f0fdf4;
       padding: 2px 7px;
@@ -162,12 +247,40 @@
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(1.2); }
     }
+    .drishti-sub-text {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
 
+    /* ── 4. National Initiative Badges (Right Flank) ── */
+    .mha-initiatives-flank {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+    .initiative-img {
+      height: 48px;
+      width: auto;
+      max-width: 115px;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.15s ease;
+    }
+    .initiative-img:hover {
+      transform: scale(1.04);
+    }
+
+    /* Action Buttons in Header */
     .header-actions {
       display: flex;
       align-items: center;
       gap: 8px;
       flex-shrink: 0;
+      margin-left: 8px;
     }
     .btn {
       display: inline-flex;
@@ -237,7 +350,7 @@
       100% { background-color: #991b1b; }
     }
     .alert-banner-inner {
-      max-width: 1400px;
+      max-width: 1440px;
       margin: 0 auto;
       padding: 6px 24px;
       display: flex;
@@ -293,7 +406,7 @@
 
     /* Main Grid */
     main {
-      max-width: 1400px;
+      max-width: 1440px;
       margin: 20px auto;
       padding: 0 20px;
     }
@@ -660,37 +773,55 @@
       display: none;
     }
 
-    /* ── Comprehensive Mobile & Responsive Media Queries ── */
+    /* ── Responsive Rules ── */
+    @media (max-width: 1280px) {
+      .initiative-img {
+        height: 40px;
+        max-width: 95px;
+      }
+      .mha-title-hi { font-size: 17px; }
+      .mha-title-en-main { font-size: 18px; }
+    }
+
     @media (max-width: 1100px) {
       .grid { grid-template-columns: repeat(2, 1fr); }
+      .mha-initiatives-flank {
+        display: none; /* Hide campaign badges on medium/small viewports to prevent crowding */
+      }
     }
 
     @media (max-width: 768px) {
-      header {
+      .gov-top-inner {
+        padding: 4px 12px;
+      }
+      .gov-utility-right {
+        gap: 8px;
+      }
+      .gov-social-icons, .gov-skip-link {
+        display: none;
+      }
+      .mha-main-header {
         padding: 8px 12px;
         gap: 8px;
       }
-      .brand {
-        gap: 8px;
+      .mha-emblem-svg {
+        height: 50px;
       }
-      .brand-logo {
-        height: 30px;
-        max-width: 90px;
+      .mha-title-hi { font-size: 15px; }
+      .mha-title-en-sub { font-size: 10.5px; }
+      .mha-title-en-main { font-size: 16px; }
+      .mha-vertical-divider {
+        display: none;
       }
-      .brand-title {
-        font-size: 14.5px;
-        gap: 5px;
+      .drishti-header-brand {
+        display: none; /* Drishti live status is still visible via title/banner */
       }
-      .brand-sub {
-        display: none; /* Hide verbose subtitle to preserve horizontal space */
-      }
-      .badge-live {
-        font-size: 10px;
-        padding: 1px 6px;
+      .mha-initiatives-flank {
+        display: none;
       }
 
       main {
-        margin: 12px auto 80px auto; /* Extra bottom margin for mobile bottom bar */
+        margin: 12px auto 80px auto;
         padding: 0 10px;
       }
       .grid {
@@ -698,7 +829,7 @@
         gap: 12px;
       }
 
-      /* Drawer full width on mobile devices */
+      /* Drawer full width on mobile */
       .drawer {
         width: 100vw;
         max-width: 100vw;
@@ -729,7 +860,7 @@
         font-size: 14px;
       }
 
-      /* Mobile Bottom Bar for instant thumb accessibility */
+      /* Mobile Bottom Bar */
       .mobile-bottom-bar {
         display: flex;
         position: fixed;
@@ -769,19 +900,8 @@
     }
 
     @media (max-width: 480px) {
-      .gov-strip-inner {
-        padding: 4px 10px;
-        font-size: 10.5px;
-      }
-      .gov-mha, .gov-bullet {
+      .gov-lang-en {
         display: none;
-      }
-
-      header {
-        padding: 6px 10px;
-      }
-      .brand-title {
-        font-size: 13.5px;
       }
       .header-actions {
         gap: 5px;
@@ -814,31 +934,188 @@
 </head>
 <body>
   <div class="top-nav-container">
-    <!-- GOI National Official Identity Bar -->
-    <div class="gov-strip">
-      <div class="gov-strip-inner">
-        <div class="gov-left">
-          <span class="gov-flag-icon">🇮🇳</span>
-          <span class="gov-badge-in">भारत सरकार</span>
-          <span class="gov-divider">|</span>
-          <span>Government of India</span>
-          <span class="gov-bullet">•</span>
-          <span class="gov-mha">Ministry of Home Affairs (MHA)</span>
+    <!-- 1. Top Utility & Accessibility Bar (Official GOI Standard) -->
+    <div class="gov-top-utility">
+      <div class="gov-top-inner">
+        <div class="gov-utility-left">
+          <span class="gov-lang-hi">भारत सरकार</span>
+          <span class="gov-sep">|</span>
+          <span class="gov-lang-en">GOVERNMENT OF INDIA</span>
+        </div>
+        <div class="gov-utility-right">
+          <a href="#main-content" class="gov-skip-link">SKIP TO MAIN CONTENT</a>
+          <span class="gov-util-item" title="Search">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </span>
+          <div class="gov-text-size-tools" title="Accessibility Text Resizing">
+            <span onclick="adjustFontSize(-1)" title="Decrease Text Size">A-</span>
+            <span onclick="adjustFontSize(0)" title="Default Text Size">A</span>
+            <span onclick="adjustFontSize(1)" title="Increase Text Size">A+</span>
+          </div>
+          <div class="gov-social-icons" title="MHA Social Channels">
+            <a href="https://facebook.com" target="_blank" rel="noreferrer" title="Facebook">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" title="Twitter / X">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noreferrer" title="YouTube">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#ffffff"/></svg>
+            </a>
+          </div>
+          <span class="gov-util-item" title="Sitemap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </span>
+          <div class="gov-lang-select" title="Select Language">
+            <span>Language</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
         </div>
       </div>
-      <div class="gov-tricolor"></div>
     </div>
 
-    <!-- Main Navigation Bar -->
-    <header>
-      <div class="brand">
-        <img src="assets/product_logo.png" alt="Drishti Logo" class="brand-logo">
-        <div class="brand-text">
-          <h1 class="brand-title">Drishti <span class="badge-live"><span class="dot"></span> Live</span></h1>
-          <span class="brand-sub">Intelligent Border Video Analytics Platform</span>
+    <!-- 2. Tricolor Ribbon -->
+    <div class="gov-tricolor"></div>
+
+    <!-- 3. Main Official Ministry of Home Affairs Header -->
+    <header class="mha-main-header">
+      <div class="mha-brand-flank">
+        <!-- National Emblem of India -->
+        <div class="mha-emblem-wrap">
+          <svg class="mha-emblem-svg" viewBox="0 0 120 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Ashoka Lion Capital (State Emblem of India) -->
+  <g fill="#1e293b">
+    <!-- Center Lion Head & Mane -->
+    <path d="M60 10 C50 10 44 16 44 24 C44 32 48 38 48 44 C42 44 38 48 38 56 C38 64 42 70 48 74 C44 76 42 80 44 86 C46 90 52 92 60 92 C68 92 74 90 76 86 C78 80 76 76 72 74 C78 70 82 64 82 56 C82 48 78 44 72 44 C72 38 76 32 76 24 C76 16 70 10 60 10Z" fill="#1e293b"/>
+    <!-- Left Lion Profile -->
+    <path d="M44 28 C36 28 30 34 30 42 C30 50 36 56 40 60 C34 62 30 68 32 76 C34 82 40 84 46 84 C42 78 42 72 44 66 C42 60 42 52 44 46 Z" fill="#334155"/>
+    <!-- Right Lion Profile -->
+    <path d="M76 28 C84 28 90 34 90 42 C90 50 84 56 80 60 C86 62 90 68 88 76 C86 82 80 84 74 84 C78 78 78 72 76 66 C78 60 78 52 76 46 Z" fill="#334155"/>
+    <!-- Lion Face Features -->
+    <ellipse cx="54" cy="38" rx="2.5" ry="3" fill="#ffffff"/>
+    <ellipse cx="66" cy="38" rx="2.5" ry="3" fill="#ffffff"/>
+    <polygon points="60,42 57,48 63,48" fill="#ffffff"/>
+    <path d="M54 54 Q60 58 66 54" stroke="#ffffff" stroke-width="1.8" fill="none"/>
+    <!-- Abacus Base -->
+    <rect x="24" y="94" width="72" height="12" rx="3" fill="#1e293b"/>
+    <!-- Ashoka Chakra on Abacus -->
+    <circle cx="60" cy="100" r="5.5" stroke="#ffffff" stroke-width="1.2" fill="none"/>
+    <circle cx="60" cy="100" r="1.5" fill="#ffffff"/>
+    <!-- Galloping Horse (Left) & Bull (Right) on Abacus -->
+    <ellipse cx="36" cy="100" rx="4" ry="2.5" fill="#ffffff"/>
+    <ellipse cx="84" cy="100" rx="4" ry="2.5" fill="#ffffff"/>
+    <!-- Bell-shaped Lotus Base -->
+    <path d="M30 108 C30 108 36 122 60 122 C84 122 90 108 90 108 Z" fill="#334155"/>
+    <line x1="32" y1="110" x2="88" y2="110" stroke="#ffffff" stroke-width="0.8"/>
+    <!-- Plinth Base -->
+    <rect x="20" y="124" width="80" height="6" rx="1.5" fill="#1e293b"/>
+  </g>
+  <!-- Motto: Satyameva Jayate -->
+  <text x="60" y="146" text-anchor="middle" font-family="'Times New Roman', Georgia, serif" font-weight="700" font-size="12.5" fill="#1e293b" letter-spacing="0.05em">सत्यमेव जयते</text>
+</svg>
+        </div>
+
+        <!-- Bilingual Ministry Typography -->
+        <div class="mha-titles">
+          <span class="mha-title-hi">गृह मंत्रालय</span>
+          <span class="mha-title-en-sub">MINISTRY OF</span>
+          <span class="mha-title-en-main">HOME AFFAIRS</span>
+        </div>
+
+        <div class="mha-vertical-divider"></div>
+
+        <!-- Drishti Operational Command Identity -->
+        <div class="drishti-header-brand">
+          <div class="drishti-title-row">
+            <span class="drishti-logo-text">DRISHTI</span>
+            <span class="badge-live"><span class="dot"></span> LIVE</span>
+          </div>
+          <span class="drishti-sub-text">Border Video Analytics Command</span>
         </div>
       </div>
 
+      <!-- 4. National Campaign Initiatives Flank -->
+      <div class="mha-initiatives-flank">
+        <div class="initiative-badge" title="Swachh Bharat Abhiyan">
+          <svg class="initiative-img" viewBox="0 0 160 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Swachh Bharat Specs Logo -->
+  <circle cx="48" cy="38" r="24" stroke="#1e293b" stroke-width="3.5" fill="#ffffff"/>
+  <circle cx="112" cy="38" r="24" stroke="#1e293b" stroke-width="3.5" fill="#ffffff"/>
+  <!-- Tricolor Nose Bridge -->
+  <path d="M72 38 Q80 32 88 38" stroke="#FF9933" stroke-width="4" fill="none"/>
+  <path d="M72 40 Q80 34 88 40" stroke="#138808" stroke-width="2" fill="none"/>
+  <!-- Spectacle Arms -->
+  <path d="M24 35 Q10 28 4 12" stroke="#1e293b" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M136 35 Q150 28 156 12" stroke="#1e293b" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Text inside lenses -->
+  <text x="48" y="44" text-anchor="middle" font-family="'Times New Roman', serif" font-weight="700" font-size="14" fill="#1e293b">स्वच्छ</text>
+  <text x="112" y="44" text-anchor="middle" font-family="'Times New Roman', serif" font-weight="700" font-size="14" fill="#1e293b">भारत</text>
+  <!-- Tagline underneath -->
+  <text x="80" y="76" text-anchor="middle" font-family="'Times New Roman', serif" font-weight="600" font-size="10.5" fill="#334155" letter-spacing="0.02em">एक कदम स्वच्छता की ओर</text>
+</svg>
+        </div>
+        <div class="initiative-badge" title="G20 India 2023 - Vasudhaiva Kutumbakam">
+          <svg class="initiative-img" viewBox="0 0 160 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- G20 Official Badge -->
+  <!-- Lotus & Globe -->
+  <g transform="translate(18, 6)">
+    <!-- Globe in Center -->
+    <circle cx="50" cy="24" r="15" fill="#0284c7"/>
+    <path d="M38 24 Q50 18 62 24" stroke="#ffffff" stroke-width="1.2" fill="none"/>
+    <path d="M38 24 Q50 30 62 24" stroke="#ffffff" stroke-width="1.2" fill="none"/>
+    <line x1="50" y1="9" x2="50" y2="39" stroke="#ffffff" stroke-width="1.2"/>
+    <!-- Lotus Petals in Tricolor -->
+    <path d="M26 36 Q38 22 50 32 Q62 22 74 36 Q50 44 26 36 Z" fill="#FF9933"/>
+    <path d="M32 38 Q50 28 68 38 Q50 46 32 38 Z" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5"/>
+    <path d="M38 41 Q50 34 62 41 Q50 47 38 41 Z" fill="#138808"/>
+  </g>
+  <!-- G20 Big Text -->
+  <text x="106" y="38" font-family="Arial, sans-serif" font-weight="900" font-size="28" fill="#1e3a8a" letter-spacing="-1px">G2<tspan fill="#FF9933">0</tspan></text>
+  <!-- Bharat 2023 India -->
+  <text x="80" y="55" text-anchor="middle" font-family="'Times New Roman', serif" font-weight="700" font-size="9.5" fill="#1e293b">भारत 2023 INDIA</text>
+  <!-- Vasudhaiva Kutumbakam -->
+  <text x="80" y="67" text-anchor="middle" font-family="'Times New Roman', serif" font-size="7.5" font-weight="600" fill="#0284c7">वसुधैव कुटुम्बकम्</text>
+  <text x="80" y="78" text-anchor="middle" font-family="'Times New Roman', serif" font-size="6.5" font-weight="600" fill="#475569" letter-spacing="0.04em">ONE EARTH · ONE FAMILY · ONE FUTURE</text>
+</svg>
+        </div>
+        <div class="initiative-badge" title="International Day of Yoga">
+          <svg class="initiative-img" viewBox="0 0 135 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- International Day of Yoga -->
+  <circle cx="68" cy="34" r="28" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <!-- Sun Rays & Globe -->
+  <circle cx="68" cy="24" r="10" fill="#0284c7"/>
+  <!-- Hands Joined in Namaste -->
+  <path d="M68 14 L64 28 L68 34 L72 28 Z" fill="#ffffff"/>
+  <!-- Leaves / Harmony Wings -->
+  <path d="M50 36 Q42 22 58 26 Q56 36 50 36 Z" fill="#16a34a"/>
+  <path d="M86 36 Q94 22 78 26 Q80 36 86 36 Z" fill="#16a34a"/>
+  <!-- Pedestal -->
+  <path d="M52 42 Q68 38 84 42 Q68 46 52 42 Z" fill="#d97706"/>
+  <!-- Text -->
+  <text x="68" y="64" text-anchor="middle" font-family="'Times New Roman', serif" font-weight="700" font-size="8.5" fill="#1e3a8a">INTERNATIONAL DAY OF YOGA</text>
+  <text x="68" y="76" text-anchor="middle" font-family="'Times New Roman', serif" font-weight="600" font-size="7.5" fill="#15803d">Yoga For Harmony &amp; Peace</text>
+</svg>
+        </div>
+        <div class="initiative-badge" title="Cyber Dost - MHA Cyber Safety">
+          <svg class="initiative-img" viewBox="0 0 110 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cyber Dost MHA Initiative -->
+  <circle cx="55" cy="38" r="30" stroke="#ea580c" stroke-width="3" fill="#ffffff"/>
+  <!-- Fingerprint Curves -->
+  <path d="M42 36 Q55 24 68 36" stroke="#fdba74" stroke-width="1.8" fill="none"/>
+  <path d="M46 40 Q55 30 64 40" stroke="#ea580c" stroke-width="1.8" fill="none"/>
+  <!-- Police Peak Cap -->
+  <path d="M40 28 Q55 18 70 28 L74 31 Q55 28 36 31 Z" fill="#1e3a8a"/>
+  <ellipse cx="55" cy="27" rx="3" ry="1.5" fill="#fbbf24"/>
+  <!-- Shield / CD Emblem -->
+  <circle cx="55" cy="44" r="10" fill="#1e3a8a"/>
+  <text x="55" y="47" text-anchor="middle" font-family="Arial, sans-serif" font-weight="800" font-size="7" fill="#ffffff">CD</text>
+  <!-- Cyber Dost Text -->
+  <text x="55" y="75" text-anchor="middle" font-family="'Times New Roman', serif" font-weight="800" font-size="9" fill="#ea580c" letter-spacing="0.06em">CYBER DOST</text>
+</svg>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
       <div class="header-actions">
         <button class="btn-export" onclick="exportIncidentLog()" title="Download Incident Log (CSV)">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -866,12 +1143,12 @@
     </div>
   </div>
 
-  <main>
+  <main id="main-content">
     <div class="grid">
       <!-- Cam 1: Virtual Fence -->
-      <div class="card breach-glow" id="card-virtual_fence" onclick="openEnlarged('virtual_fence', 'Cam 1')">
+      <div class="card breach-glow" id="card-virtual_fence" onclick="openEnlarged('virtual_fence', 'Cam 1 · Virtual Fence Restricted Zone')">
         <div class="card-header">
-          <h2>Cam 1 <span class="card-tag"></span></h2>
+          <h2>Cam 1 <span class="card-tag">Virtual Fence</span></h2>
         </div>
         <div class="feed-wrapper">
           <video class="feed-video" src="assets/Cam1.mp4" autoplay loop muted playsinline></video>
@@ -884,9 +1161,9 @@
       </div>
 
       <!-- Cam 2: Vehicle Detection -->
-      <div class="card" id="card-vehicle_detection" onclick="openEnlarged('vehicle_detection', 'Cam 2')">
+      <div class="card" id="card-vehicle_detection" onclick="openEnlarged('vehicle_detection', 'Cam 2 · Multi-Class Vehicle Tracking')">
         <div class="card-header">
-          <h2>Cam 2 <span class="card-tag"></span></h2>
+          <h2>Cam 2 <span class="card-tag">Vehicle Tracking</span></h2>
         </div>
         <div class="feed-wrapper">
           <video class="feed-video" src="assets/Cam2.mp4" autoplay loop muted playsinline></video>
@@ -895,9 +1172,9 @@
       </div>
 
       <!-- Cam 3: Human Detection -->
-      <div class="card" id="card-human_detection" onclick="openEnlarged('human_detection', 'Cam 3')">
+      <div class="card" id="card-human_detection" onclick="openEnlarged('human_detection', 'Cam 3 · Perimeter Human Detection')">
         <div class="card-header">
-          <h2>Cam 3 <span class="card-tag"></span></h2>
+          <h2>Cam 3 <span class="card-tag">Human Detection</span></h2>
         </div>
         <div class="feed-wrapper">
           <video class="feed-video" src="assets/Cam3.mp4" autoplay loop muted playsinline></video>
@@ -905,7 +1182,7 @@
         </div>
       </div>
 
-      <!-- Cam 4: ANPR -->
+      <!-- Cam 4 -->
       <div class="card" id="card-anpr" onclick="openEnlarged('anpr', 'Cam 4')">
         <div class="card-header">
           <h2>Cam 4</h2>
@@ -917,9 +1194,9 @@
       </div>
 
       <!-- Cam 5: Suspicious Activity -->
-      <div class="card breach-glow" id="card-suspicious_activity" onclick="openEnlarged('suspicious_activity', 'Cam 5')">
+      <div class="card breach-glow" id="card-suspicious_activity" onclick="openEnlarged('suspicious_activity', 'Cam 5 · Suspicious Activity Detection')">
         <div class="card-header">
-          <h2>Cam 5 <span class="card-tag"></span></h2>
+          <h2>Cam 5 <span class="card-tag">Night Loitering</span></h2>
         </div>
         <div class="feed-wrapper">
           <video class="feed-video" src="assets/Cam5.mp4" autoplay loop muted playsinline></video>
@@ -928,9 +1205,9 @@
       </div>
 
       <!-- Cam 6: Facial Recognition -->
-      <div class="card" id="card-facial_recognition" onclick="openEnlarged('facial_recognition', 'Cam 6')">
+      <div class="card" id="card-facial_recognition" onclick="openEnlarged('facial_recognition', 'Cam 6 · Facial Recognition & Verification')">
         <div class="card-header">
-          <h2>Cam 6 <span class="card-tag"></span></h2>
+          <h2>Cam 6 <span class="card-tag">Face Verification</span></h2>
         </div>
         <div class="feed-wrapper">
           <video class="feed-video" src="assets/Cam6.mp4" autoplay loop muted playsinline></video>
@@ -1201,6 +1478,18 @@
           </div>`;
         eventsList.appendChild(card);
       });
+    }
+
+    // Text Resizing Utility
+    let currentFontSizeOffset = 0;
+    function adjustFontSize(delta) {
+      if (delta === 0) {
+        currentFontSizeOffset = 0;
+        document.documentElement.style.fontSize = '100%';
+      } else {
+        currentFontSizeOffset = Math.max(-2, Math.min(3, currentFontSizeOffset + delta));
+        document.documentElement.style.fontSize = (100 + currentFontSizeOffset * 8) + '%';
+      }
     }
 
     document.addEventListener('keydown', (e) => {
