@@ -64,23 +64,6 @@ Then visit `http://localhost:8080` in your web browser.
 
 ---
 
-## 🌐 Cloud Hosting (Vercel / Netlify)
-
-This repository is ready for 1-click deployment on static web platforms:
-
-### Deploy to Vercel
-1. Log in to [vercel.com](https://vercel.com).
-2. Click **Add New Project** $\rightarrow$ **Import Git Repository**.
-3. Select this repository (`ishanyatripathi/Drishti`).
-4. Framework Preset: **Other** (Plain Static HTML/JS/CSS).
-5. Click **Deploy**. Your dashboard will be live on an HTTPS link in seconds.
-
-### Deploy to Netlify
-1. Log in to [app.netlify.com](https://app.netlify.com).
-2. Import from GitHub or drag and drop this repository folder onto [app.netlify.com/drop](https://app.netlify.com/drop).
-
----
-
 ## 📂 Repository Contents
 
 ```
