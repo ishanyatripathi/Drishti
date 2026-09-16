@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   <title>Drishti · Intelligent Border Video Analytics Platform</title>
   <link rel="icon" type="image/png" href="assets/favion.png">
   <link rel="shortcut icon" type="image/png" href="assets/favion.png">
@@ -21,9 +21,11 @@
       box-sizing: border-box;
       font-family: "Times New Roman", Times, Georgia, serif !important;
     }
-    body {
+    html, body {
       margin: 0;
       padding: 0;
+      width: 100%;
+      overflow-x: hidden;
       background: var(--bg);
       color: var(--text-main);
       font-family: var(--font-stack) !important;
@@ -33,6 +35,8 @@
       position: sticky;
       top: 0;
       z-index: 20;
+      background: #ffffff;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
     }
     /* ── GOI National Official Identity Bar ── */
     .gov-strip {
@@ -52,11 +56,15 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .gov-flag-icon {
-      font-size: 17px;
+      font-size: 16px;
       line-height: 1;
       display: inline-block;
+      flex-shrink: 0;
     }
     .gov-badge-in {
       font-weight: 700;
@@ -78,6 +86,7 @@
       background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%, #138808 100%);
     }
 
+    /* Main Navigation Header */
     header {
       display: flex;
       justify-content: space-between;
@@ -85,26 +94,31 @@
       padding: 10px 24px;
       background: #ffffff;
       border-bottom: 1px solid var(--border);
+      gap: 12px;
     }
     .brand {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
+      min-width: 0;
+      flex: 1 1 auto;
     }
     .brand-logo {
-      height: 40px;
+      height: 38px;
       width: auto;
-      max-width: 150px;
+      max-width: 140px;
       object-fit: contain;
       display: block;
+      flex-shrink: 0;
     }
     .brand-text {
       display: flex;
       flex-direction: column;
       gap: 2px;
+      min-width: 0;
     }
     .brand-title {
-      font-size: 17px;
+      font-size: 16.5px;
       font-weight: 700;
       margin: 0;
       color: var(--text-main);
@@ -112,12 +126,16 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      white-space: nowrap;
     }
     .brand-sub {
       font-size: 11px;
       color: var(--text-muted);
       font-weight: 500;
       letter-spacing: 0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .badge-live {
       display: inline-flex;
@@ -130,6 +148,7 @@
       padding: 2px 7px;
       border-radius: 12px;
       border: 1px solid #bbf7d0;
+      flex-shrink: 0;
     }
     .dot {
       width: 6px;
@@ -148,6 +167,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      flex-shrink: 0;
     }
     .btn {
       display: inline-flex;
@@ -157,13 +177,17 @@
       color: #ffffff;
       border: none;
       border-radius: 6px;
-      padding: 7px 13px;
+      padding: 7px 12px;
       font-size: 12.5px;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
-      transition: background 0.15s ease;
+      transition: background 0.15s ease, transform 0.1s ease;
+      white-space: nowrap;
+      user-select: none;
     }
     .btn:hover { background: #1e293b; }
+    .btn:active { transform: scale(0.97); }
+
     .btn-export {
       display: inline-flex;
       align-items: center;
@@ -177,17 +201,24 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.15s ease;
+      white-space: nowrap;
+      user-select: none;
     }
     .btn-export:hover {
       background: #f1f5f9;
       border-color: #cbd5e1;
       color: #0f172a;
     }
+    .btn-export:active { transform: scale(0.97); }
+
+    .export-label-mobile { display: none; }
+    .export-label-desktop { display: inline; }
+
     .event-count-badge {
       background: var(--accent);
       color: #ffffff;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       padding: 1px 6px;
       border-radius: 10px;
     }
@@ -218,25 +249,31 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      min-width: 0;
     }
     .alert-pulse-icon {
       font-size: 16px;
       animation: iconThrob 1s infinite alternate;
+      flex-shrink: 0;
     }
     @keyframes iconThrob {
       from { transform: scale(1); }
       to { transform: scale(1.2); }
     }
     .alert-message {
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
       color: #ffffff;
       letter-spacing: 0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .alert-controls {
       display: flex;
       align-items: center;
       gap: 8px;
+      flex-shrink: 0;
     }
     .alert-action-btn {
       background: #ffffff;
@@ -257,8 +294,8 @@
     /* Main Grid */
     main {
       max-width: 1400px;
-      margin: 24px auto;
-      padding: 0 24px;
+      margin: 20px auto;
+      padding: 0 20px;
     }
     .grid {
       display: grid;
@@ -278,7 +315,6 @@
       border-color: #cbd5e1;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     }
-    /* Pulsing red border for active breach */
     .card.breach-glow {
       border-color: #ef4444 !important;
       box-shadow: 0 0 0 2px #ef4444, 0 0 22px rgba(239, 68, 68, 0.45) !important;
@@ -330,7 +366,7 @@
       display: block;
     }
 
-    /* Crisp SVG Restricted Zone Overlay (Cam 1) */
+    /* Crisp SVG Restricted Zone Overlay */
     .fence-svg {
       position: absolute;
       inset: 0;
@@ -394,7 +430,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 20px;
+      padding: 14px 18px;
       border-bottom: 1px solid var(--border);
     }
     .drawer-title-wrap {
@@ -420,11 +456,12 @@
     .close-btn {
       background: none;
       border: none;
-      font-size: 20px;
+      font-size: 22px;
       cursor: pointer;
       color: var(--text-muted);
       padding: 4px 8px;
       border-radius: 4px;
+      line-height: 1;
     }
     .close-btn:hover { background: var(--bg); color: var(--text-main); }
 
@@ -534,7 +571,7 @@
       font-weight: 500;
     }
     .plate-value {
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 700;
       letter-spacing: 0.08em;
       font-family: 'Courier New', Courier, monospace;
@@ -618,11 +655,160 @@
       display: block;
     }
 
+    /* ── Mobile Floating Bottom Action Bar ── */
+    .mobile-bottom-bar {
+      display: none;
+    }
+
+    /* ── Comprehensive Mobile & Responsive Media Queries ── */
     @media (max-width: 1100px) {
       .grid { grid-template-columns: repeat(2, 1fr); }
     }
+
     @media (max-width: 768px) {
-      .grid { grid-template-columns: 1fr; }
+      header {
+        padding: 8px 12px;
+        gap: 8px;
+      }
+      .brand {
+        gap: 8px;
+      }
+      .brand-logo {
+        height: 30px;
+        max-width: 90px;
+      }
+      .brand-title {
+        font-size: 14.5px;
+        gap: 5px;
+      }
+      .brand-sub {
+        display: none; /* Hide verbose subtitle to preserve horizontal space */
+      }
+      .badge-live {
+        font-size: 10px;
+        padding: 1px 6px;
+      }
+
+      main {
+        margin: 12px auto 80px auto; /* Extra bottom margin for mobile bottom bar */
+        padding: 0 10px;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      /* Drawer full width on mobile devices */
+      .drawer {
+        width: 100vw;
+        max-width: 100vw;
+      }
+      .drawer-header {
+        padding: 12px 14px;
+      }
+      .event-card-body {
+        grid-template-columns: 95px 1fr;
+      }
+      .event-snapshot {
+        width: 95px;
+      }
+
+      /* Modal fullscreen on mobile */
+      .modal-overlay {
+        padding: 0;
+      }
+      .modal-content {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+      }
+      .modal-header {
+        padding: 8px 14px;
+      }
+      .modal-header h3 {
+        font-size: 14px;
+      }
+
+      /* Mobile Bottom Bar for instant thumb accessibility */
+      .mobile-bottom-bar {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        border-top: 1px solid var(--border);
+        padding: 8px 12px;
+        gap: 10px;
+        z-index: 99;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+      }
+      .mobile-bar-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        background: #0f172a;
+        color: #ffffff;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 12px;
+        font-size: 12.5px;
+        font-weight: 600;
+        cursor: pointer;
+        user-select: none;
+        transition: transform 0.1s ease;
+      }
+      .mobile-bar-btn:active { transform: scale(0.96); }
+      .mobile-bar-btn-export {
+        background: #ffffff;
+        color: #0f172a;
+        border: 1px solid var(--border);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gov-strip-inner {
+        padding: 4px 10px;
+        font-size: 10.5px;
+      }
+      .gov-mha, .gov-bullet {
+        display: none;
+      }
+
+      header {
+        padding: 6px 10px;
+      }
+      .brand-title {
+        font-size: 13.5px;
+      }
+      .header-actions {
+        gap: 5px;
+      }
+      .btn {
+        padding: 5px 8px;
+        font-size: 11px;
+        gap: 4px;
+      }
+      .btn-export {
+        padding: 5px 8px;
+        font-size: 11px;
+        gap: 4px;
+      }
+      .export-label-desktop { display: none; }
+      .export-label-mobile { display: inline; }
+
+      .alert-banner-inner {
+        padding: 5px 10px;
+      }
+      .alert-message {
+        font-size: 11px;
+      }
+      .alert-action-btn {
+        padding: 3px 8px;
+        font-size: 11px;
+      }
     }
   </style>
 </head>
@@ -648,18 +834,20 @@
       <div class="brand">
         <img src="assets/product_logo.png" alt="Drishti Logo" class="brand-logo">
         <div class="brand-text">
-          <h1 class="brand-title">Drishti Monitoring <span class="badge-live"><span class="dot"></span> Live</span></h1>
+          <h1 class="brand-title">Drishti <span class="badge-live"><span class="dot"></span> Live</span></h1>
           <span class="brand-sub">Intelligent Border Video Analytics Platform</span>
         </div>
       </div>
 
       <div class="header-actions">
-        <button class="btn-export" onclick="exportIncidentLog()" title="Export Incident Log (CSV)">
+        <button class="btn-export" onclick="exportIncidentLog()" title="Download Incident Log (CSV)">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Export Log
+          <span class="export-label-desktop">Download CSV</span>
+          <span class="export-label-mobile">CSV</span>
         </button>
-        <button class="btn" id="openEventsBtn" onclick="openEvents()">
-          Events <span class="event-count-badge" id="eventsCountBadge">6</span>
+        <button class="btn" id="openEventsBtn" onclick="openEvents()" title="View Incident Events">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>Events</span> <span class="event-count-badge" id="eventsCountBadge">6</span>
         </button>
       </div>
     </header>
@@ -669,7 +857,7 @@
       <div class="alert-banner-inner">
         <div class="alert-left-group">
           <div class="alert-pulse-icon">⚠️</div>
-          <div class="alert-message" id="alertBannerMsg">Cam 1 · Restricted Zone Breach Detected | Cam 5 · Suspicious Loitering</div>
+          <div class="alert-message" id="alertBannerMsg">Cam 1 · Restricted Zone Breach | Cam 5 · Suspicious Loitering</div>
         </div>
         <div class="alert-controls">
           <button class="alert-action-btn" onclick="inspectAlertFeed('virtual_fence')">Inspect Feed</button>
@@ -683,7 +871,7 @@
       <!-- Cam 1: Virtual Fence -->
       <div class="card breach-glow" id="card-virtual_fence" onclick="openEnlarged('virtual_fence', 'Cam 1 · Virtual Fence Restricted Zone')">
         <div class="card-header">
-          <h2>Cam 1 <span class="card-tag"></span></h2>
+          <h2>Cam 1 <span class="card-tag">Virtual Fence</span></h2>
         </div>
         <div class="feed-wrapper">
           <video class="feed-video" src="assets/Cam1.mp4" autoplay loop muted playsinline></video>
@@ -698,7 +886,7 @@
       <!-- Cam 2: Vehicle Detection -->
       <div class="card" id="card-vehicle_detection" onclick="openEnlarged('vehicle_detection', 'Cam 2 · Multi-Class Vehicle Tracking')">
         <div class="card-header">
-          <h2>Cam 2 <span class="card-tag"></span></h2>
+          <h2>Cam 2 <span class="card-tag">Vehicle Tracking</span></h2>
         </div>
         <div class="feed-wrapper">
           <video class="feed-video" src="assets/Cam2.mp4" autoplay loop muted playsinline></video>
@@ -709,7 +897,7 @@
       <!-- Cam 3: Human Detection -->
       <div class="card" id="card-human_detection" onclick="openEnlarged('human_detection', 'Cam 3 · Perimeter Human Detection')">
         <div class="card-header">
-          <h2>Cam 3 <span class="card-tag"></span></h2>
+          <h2>Cam 3 <span class="card-tag">Human Detection</span></h2>
         </div>
         <div class="feed-wrapper">
           <video class="feed-video" src="assets/Cam3.mp4" autoplay loop muted playsinline></video>
@@ -720,7 +908,7 @@
       <!-- Cam 4: ANPR -->
       <div class="card" id="card-anpr" onclick="openEnlarged('anpr', 'Cam 4 · License Plate Recognition (ANPR)')">
         <div class="card-header">
-          <h2>Cam 4 <span class="card-tag"></span></h2>
+          <h2>Cam 4 <span class="card-tag">ANPR Scanner</span></h2>
         </div>
         <div class="feed-wrapper">
           <video class="feed-video" src="assets/Cam4.mp4" autoplay loop muted playsinline></video>
@@ -731,7 +919,7 @@
       <!-- Cam 5: Suspicious Activity -->
       <div class="card breach-glow" id="card-suspicious_activity" onclick="openEnlarged('suspicious_activity', 'Cam 5 · Suspicious Activity Detection')">
         <div class="card-header">
-          <h2>Cam 5 <span class="card-tag"></span></h2>
+          <h2>Cam 5 <span class="card-tag">Night Loitering</span></h2>
         </div>
         <div class="feed-wrapper">
           <video class="feed-video" src="assets/Cam5.mp4" autoplay loop muted playsinline></video>
@@ -742,7 +930,7 @@
       <!-- Cam 6: Facial Recognition -->
       <div class="card" id="card-facial_recognition" onclick="openEnlarged('facial_recognition', 'Cam 6 · Facial Recognition & Verification')">
         <div class="card-header">
-          <h2>Cam 6 <span class="card-tag"></span></h2>
+          <h2>Cam 6 <span class="card-tag">Face Verification</span></h2>
         </div>
         <div class="feed-wrapper">
           <video class="feed-video" src="assets/Cam6.mp4" autoplay loop muted playsinline></video>
@@ -751,6 +939,18 @@
       </div>
     </div>
   </main>
+
+  <!-- Mobile Floating Action Bar for 1-Tap Thumb Access -->
+  <div class="mobile-bottom-bar">
+    <button class="mobile-bar-btn" onclick="openEvents()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <span>Events (6)</span>
+    </button>
+    <button class="mobile-bar-btn mobile-bar-btn-export" onclick="exportIncidentLog()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <span>Download CSV</span>
+    </button>
+  </div>
 
   <!-- Incident Drawer -->
   <div class="drawer-overlay" id="drawerOverlay" onclick="closeEvents()"></div>
@@ -761,9 +961,9 @@
         <span class="drawer-subtitle">Border Security Evidence Stream</span>
       </div>
       <div class="drawer-actions">
-        <button class="btn-export" onclick="exportIncidentLog()" title="Export log as CSV">
+        <button class="btn-export" onclick="exportIncidentLog()" title="Download log as CSV">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Export CSV
+          <span>Download CSV</span>
         </button>
         <button class="close-btn" onclick="closeEvents()">&times;</button>
       </div>
