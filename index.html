@@ -282,10 +282,16 @@
     /* Action Buttons in Header */
     .header-actions {
       display: flex;
-      align-items: center;
-      gap: 8px;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
       flex-shrink: 0;
       margin-left: 8px;
+    }
+    .header-actions-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     .btn {
       display: inline-flex;
@@ -1080,26 +1086,52 @@
       }
     }
 
-    /* Google Translate Integration Styling */
-    .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame {
+    /* Google Translate Integration Styling & Anti-Covering Protections */
+    .goog-te-banner-frame.skiptranslate,
+    .goog-te-banner-frame,
+    iframe.goog-te-banner-frame,
+    .goog-te-balloon-frame {
       display: none !important;
+      visibility: hidden !important;
+      height: 0 !important;
+      width: 0 !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
     }
     body {
       top: 0px !important;
+      position: static !important;
     }
     #google_translate_element {
       display: none !important;
     }
-    .goog-tooltip {
-      display: none !important;
-    }
+    #goog-gt-tt,
+    .goog-tooltip,
     .goog-tooltip:hover {
       display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
     }
     .goog-text-highlight {
       background-color: transparent !important;
+      background: none !important;
       border: none !important;
       box-shadow: none !important;
+    }
+    iframe.skiptranslate {
+      display: none !important;
+      visibility: hidden !important;
+    }
+    .top-nav-container {
+      top: 0 !important;
+    }
+    .drishti-logo-img {
+      height: 36px;
+      width: auto;
+      max-width: 140px;
+      object-fit: contain;
+      display: block;
     }
 
     /* Camera Search Widget */
@@ -1410,7 +1442,7 @@
         <!-- Drishti Operational Command Identity -->
         <div class="drishti-header-brand">
           <div class="drishti-title-row">
-            <span class="drishti-logo-text">DRISHTI</span>
+            <img src="assets/product_logo.png" alt="Drishti" class="drishti-logo-img">
             <span class="badge-live"><span class="dot"></span> LIVE</span>
           </div>
           <span class="drishti-sub-text">Border Video Analytics Command</span>
@@ -1435,7 +1467,18 @@
 
       <!-- Action Buttons -->
       <div class="header-actions">
-        <!-- Surveillance Vision Mode Toggle (Optical vs Thermal) -->
+        <div class="header-actions-top">
+          <button class="btn-export" onclick="exportIncidentLog()" title="Download Incident Log (CSV)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span class="export-label-desktop">Download CSV</span>
+            <span class="export-label-mobile">CSV</span>
+          </button>
+          <button class="btn" id="openEventsBtn" onclick="openEvents()" title="View Incident Events">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Events</span> <span class="event-count-badge" id="eventsCountBadge">10</span>
+          </button>
+        </div>
+        <!-- Surveillance Vision Spectrum Toggle (positioned below Events logging) -->
         <div class="vision-mode-switch" title="Toggle Surveillance Vision Spectrum">
           <span class="vision-switch-label">Spectrum:</span>
           <div class="vision-pill-group">
@@ -1443,16 +1486,6 @@
             <button type="button" class="vision-pill-btn" id="globalVisionThermal" onclick="setGlobalVisionMode('thermal')">Thermal FLIR</button>
           </div>
         </div>
-
-        <button class="btn-export" onclick="exportIncidentLog()" title="Download Incident Log (CSV)">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span class="export-label-desktop">Download CSV</span>
-          <span class="export-label-mobile">CSV</span>
-        </button>
-        <button class="btn" id="openEventsBtn" onclick="openEvents()" title="View Incident Events">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <span>Events</span> <span class="event-count-badge" id="eventsCountBadge">10</span>
-        </button>
       </div>
     </header>
 
@@ -2191,15 +2224,15 @@
 
     function jumpToCam(feedKey) {
       closeCamSearch();
-      const card = document.getElementById('card-' + feedKey);
-      if (card) {
-        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        card.classList.remove('cam-search-highlight');
-        // Trigger reflow for animation restart
-        void card.offsetWidth;
-        card.classList.add('cam-search-highlight');
-        setTimeout(() => card.classList.remove('cam-search-highlight'), 2600);
-      }
+      const title = CAM_TITLE_MAP[feedKey] || 'Cam Feed';
+      openEnlarged(feedKey, title);
+    }
+
+    function inspectAlertFeed(feedKey) {
+      const key = feedKey || 'virtual_fence';
+      const title = CAM_TITLE_MAP[key] || 'Cam Feed';
+      closeEvents();
+      openEnlarged(key, title);
     }
 
     // ----------------------------------------------------
@@ -2273,6 +2306,17 @@
         closeEnlarged();
       }
     });
+
+
+    // Guard against Google Translate pushing or covering the website header
+    try {
+      const gtBodyObserver = new MutationObserver(() => {
+        if (document.body && document.body.style.top && document.body.style.top !== '0px') {
+          document.body.style.top = '0px';
+        }
+      });
+      gtBodyObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['style', 'class'] });
+    } catch (e) {}
 
     // Initialize
     renderEvents();
