@@ -2228,20 +2228,8 @@
       const wrapper = document.getElementById('modalFeedWrapper');
       if (wrapper) {
         wrapper.style.aspectRatio = (feedKey === 'anpr') ? '16/9' : '4/3';
-        let fenceLayer = document.getElementById('modalFenceLayer');
-        if (!fenceLayer) {
-          fenceLayer = document.createElement('div');
-          fenceLayer.id = 'modalFenceLayer';
-          wrapper.appendChild(fenceLayer);
-        }
-        if (feedKey === 'virtual_fence') {
-          fenceLayer.innerHTML = `
-            <svg class="fence-svg" viewBox="0 0 480 270" preserveAspectRatio="none">
-              <polygon points="40,210 200,80 340,80 440,210" fill="rgba(239, 68, 68, 0.20)" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="6,4" />
-              <text x="210" y="70" fill="#f87171" font-size="12" font-weight="700" letter-spacing="1">ZONE 1 RESTRICTED</text>
-            </svg>
-          `;
-        } else {
+        const fenceLayer = document.getElementById('modalFenceLayer');
+        if (fenceLayer) {
           fenceLayer.innerHTML = '';
         }
       }
