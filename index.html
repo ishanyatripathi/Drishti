@@ -923,166 +923,82 @@
       display: block;
     }
 
-    /* ── Mobile Floating Bottom Action Bar ── */
-    .mobile-bottom-bar {
-      display: none;
-    }
+    
 
-    /* ── Responsive Rules ── */
+    /* ── Responsive Rules for All Devices (Mobile, Tablet, Desktop) ── */
     @media (max-width: 1280px) {
       .initiative-img {
-        height: 40px;
-        max-width: 95px;
+        height: 36px;
+        max-width: 90px;
       }
-      .mha-title-hi { font-size: 17px; }
-      .mha-title-en-main { font-size: 18px; }
+      .mha-title-hi { font-size: 16px; }
+      .mha-title-en-main { font-size: 17px; }
+      .drishti-logo-img { height: 32px; }
     }
 
-    @media (max-width: 1100px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
-      .mha-initiatives-flank {
-        display: none; /* Hide campaign badges on medium/small viewports to prevent crowding */
-      }
-    }
-
-    @media (max-width: 768px) {
-      .gov-top-inner {
-        padding: 4px 12px;
-      }
-      .gov-utility-right {
-        gap: 8px;
-      }
-      .gov-social-icons, .gov-skip-link {
-        display: none;
+    @media (max-width: 1024px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
       }
       .mha-main-header {
-        padding: 8px 12px;
-        gap: 8px;
+        flex-wrap: wrap;
+        padding: 10px 16px;
+        gap: 10px;
       }
-      .mha-emblem-svg {
-        height: 50px;
-      }
-      .mha-title-hi { font-size: 15px; }
-      .mha-title-en-sub { font-size: 10.5px; }
-      .mha-title-en-main { font-size: 16px; }
-      .mha-vertical-divider {
-        display: none;
-      }
-      .drishti-header-brand {
-        display: none; /* Drishti live status is still visible via title/banner */
+      .mha-brand-flank {
+        flex: 1 1 auto;
       }
       .mha-initiatives-flank {
-        display: none;
-      }
-
-      main {
-        margin: 12px auto 80px auto;
-        padding: 0 10px;
-      }
-      .grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-
-      /* Drawer full width on mobile */
-      .drawer {
-        width: 100vw;
-        max-width: 100vw;
-      }
-      .drawer-header {
-        padding: 12px 14px;
-      }
-      .event-card-body {
-        grid-template-columns: 95px 1fr;
-      }
-      .event-snapshot {
-        width: 95px;
-      }
-
-      /* Modal fullscreen on mobile */
-      .modal-overlay {
-        padding: 0;
-      }
-      .modal-content {
-        width: 100vw;
-        height: 100vh;
-        border-radius: 0;
-      }
-      .modal-header {
-        padding: 8px 14px;
-      }
-      .modal-header h3 {
-        font-size: 14px;
-      }
-
-      /* Mobile Bottom Bar */
-      .mobile-bottom-bar {
-        display: flex;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: #ffffff;
-        border-top: 1px solid var(--border);
-        padding: 8px 12px;
-        gap: 10px;
-        z-index: 99;
-        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
-      }
-      .mobile-bar-btn {
-        flex: 1;
-        display: flex;
-        align-items: center;
+        order: 3;
+        width: 100%;
         justify-content: center;
-        gap: 6px;
-        background: #0f172a;
-        color: #ffffff;
-        border: none;
-        border-radius: 6px;
-        padding: 10px 12px;
-        font-size: 12.5px;
-        font-weight: 600;
-        cursor: pointer;
-        user-select: none;
-        transition: transform 0.1s ease;
+        padding-top: 8px;
+        border-top: 1px solid #f1f5f9;
       }
-      .mobile-bar-btn:active { transform: scale(0.96); }
-      .mobile-bar-btn-export {
-        background: #ffffff;
-        color: #0f172a;
-        border: 1px solid var(--border);
+      .initiative-img {
+        height: 34px;
+        max-width: 85px;
+      }
+      .header-actions {
+        order: 2;
+        margin-left: auto;
       }
     }
-
-    @media (max-width: 480px) {
-      .gov-lang-en {
+@media (max-width: 480px) {
+      .gov-utility-left .gov-sep {
         display: none;
       }
       .header-actions {
-        gap: 5px;
+        flex-direction: column;
+        align-items: stretch;
       }
-      .btn {
-        padding: 5px 8px;
-        font-size: 11px;
-        gap: 4px;
+      .header-actions-top {
+        justify-content: space-between;
+        width: 100%;
       }
-      .btn-export {
-        padding: 5px 8px;
-        font-size: 11px;
-        gap: 4px;
+      .vision-mode-switch {
+        width: 100%;
+        justify-content: space-between;
       }
-      .export-label-desktop { display: none; }
-      .export-label-mobile { display: inline; }
-
+      .vision-pill-group {
+        flex: 1;
+        justify-content: flex-end;
+      }
       .alert-banner-inner {
-        padding: 5px 10px;
-      }
-      .alert-message {
-        font-size: 11px;
+        flex-direction: column;
+        align-items: stretch;
       }
       .alert-action-btn {
-        padding: 3px 8px;
-        font-size: 11px;
+        text-align: center;
+      }
+      .modal-header h3 {
+        font-size: 13px;
+      }
+      .close-btn {
+        font-size: 20px;
+        width: 32px;
+        height: 32px;
       }
     }
 
@@ -1305,53 +1221,7 @@
     }
 
     /* Enhanced Mobile Breakpoints */
-    @media (max-width: 768px) {
-      .gov-top-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-        padding: 6px 12px;
-      }
-      .gov-utility-right {
-        width: 100%;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-      .mha-main-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 12px;
-      }
-      .mha-brand-flank {
-        width: 100%;
-        flex-wrap: wrap;
-      }
-      .mha-initiatives-flank {
-        display: none;
-      }
-      .header-actions {
-        width: 100%;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        gap: 8px;
-      }
-      .grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-      .cam-tabs-bar {
-        padding: 0 2px 6px;
-      }
-      .cam-search-popover {
-        left: auto;
-        right: 0;
-        width: 250px;
-      }
-    }
-
-  </style>
+</style>
 </head>
 <body>
   <div id="google_translate_element" style="position:absolute; left:-9999px; top:-9999px; width:1px; height:1px; overflow:hidden; opacity:0; pointer-events:none;"></div>
@@ -1675,19 +1545,7 @@
     </div>
   </main>
 
-  <!-- Mobile Floating Action Bar for 1-Tap Thumb Access -->
-  <div class="mobile-bottom-bar">
-    <button class="mobile-bar-btn" onclick="openEvents()">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-      <span>Events (10)</span>
-    </button>
-    <button class="mobile-bar-btn mobile-bar-btn-export" onclick="exportIncidentLog()">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      <span>Download CSV</span>
-    </button>
-  </div>
-
-  <!-- Incident Drawer -->
+<!-- Incident Drawer -->
   <div class="drawer-overlay" id="drawerOverlay" onclick="closeEvents()"></div>
   <div class="drawer" id="eventsDrawer">
     <div class="drawer-header">
