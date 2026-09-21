@@ -512,7 +512,7 @@
     .card:hover .feed-overlay-hint { opacity: 1; }
 
     
-        /* ── Vision Mode Controls (Normal vs. Thermal FLIR) ── */
+        /* ── Vision Mode Controls (Normal vs. Thermal) ── */
     .vision-mode-switch {
       display: inline-flex;
       align-items: center;
@@ -580,57 +580,78 @@
       color: #ffffff;
     }
 
-    /* Thermal Mode Styling */
-    .card.thermal-mode .feed-video,
-    .modal-feed-wrapper.thermal-mode #enlargedVideo {
-      filter: contrast(185%) brightness(105%) hue-rotate(195deg) saturate(230%);
+    /* Thermal Mode & Placeholder (No false color filter) */
+    .card.thermal-mode .feed-video-normal {
+      display: none;
     }
-    .thermal-hud-layer {
+    .card:not(.thermal-mode) .feed-video-thermal {
+      display: none;
+    }
+    .card.thermal-mode .thermal-placeholder {
+      display: flex;
+    }
+    .card.thermal-mode.has-thermal-video .thermal-placeholder {
+      display: none;
+    }
+    .card.thermal-mode.has-thermal-video .feed-video-thermal {
+      display: block;
+    }
+
+    .thermal-placeholder {
       display: none;
       position: absolute;
       inset: 0;
-      pointer-events: none;
+      background: #080d1a;
+      color: #94a3b8;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
       z-index: 2;
     }
-    .card.thermal-mode .thermal-hud-layer,
-    .modal-feed-wrapper.thermal-mode .thermal-hud-layer {
-      display: block;
+    .thermal-ph-box {
+      border: 1px solid #1e293b;
+      background: #0f172a;
+      padding: 14px 18px;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      max-width: 90%;
     }
-    .thermal-reticle {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 44px;
-      height: 44px;
-      border: 1px dashed rgba(255, 255, 255, 0.45);
-      border-radius: 50%;
-    }
-    .thermal-reticle::before,
-    .thermal-reticle::after {
-      content: '';
-      position: absolute;
-      background: rgba(255, 255, 255, 0.55);
-    }
-    .thermal-reticle::before {
-      top: 50%; left: -6px; right: -6px; height: 1px;
-    }
-    .thermal-reticle::after {
-      left: 50%; top: -6px; bottom: -6px; width: 1px;
-    }
-    .thermal-spectrum-badge {
-      position: absolute;
-      top: 6px;
-      right: 6px;
-      background: rgba(15, 23, 42, 0.85);
-      color: #f8fafc;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      font-size: 9.5px;
+    .thermal-ph-title {
+      font-size: 12px;
       font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 3px;
+      color: #f8fafc;
       letter-spacing: 0.04em;
-      font-family: 'Courier New', Courier, monospace !important;
+      text-transform: uppercase;
+    }
+    .thermal-ph-meta {
+      font-size: 10.5px;
+      color: #64748b;
+    }
+    .thermal-ph-route {
+      font-size: 9.5px;
+      color: #0284c7;
+      font-family: 'Courier New', Courier, monospace;
+      margin-top: 4px;
+      background: #050b14;
+      padding: 3px 6px;
+      border-radius: 3px;
+      border: 1px solid #1e293b;
+    }
+
+    /* Modal Thermal Placeholder */
+    .modal-thermal-placeholder {
+      position: absolute;
+      inset: 0;
+      background: #080d1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      z-index: 2;
     }
 
     /* Slide-out Drawer */
@@ -1274,7 +1295,7 @@
     </div>
   </div>
 
-    <main id="main-content">
+      <main id="main-content">
     <div class="grid" id="grid">
       <!-- Cam 1 -->
       <div class="card breach-glow" id="card-virtual_fence" onclick="openEnlarged('virtual_fence', 'Cam 1')">
@@ -1286,10 +1307,14 @@
           </div>
         </div>
         <div class="feed-wrapper">
-          <video class="feed-video" src="assets/Cam1.mp4" autoplay loop muted playsinline></video>
-          <div class="thermal-hud-layer">
-            <div class="thermal-reticle"></div>
-            <div class="thermal-spectrum-badge">FLIR LWIR · 36.8°C</div>
+          <video class="feed-video feed-video-normal" src="assets/Cam1.mp4" autoplay loop muted playsinline></video>
+          <video class="feed-video feed-video-thermal" src="assets/Cam1_thermal.mp4" autoplay loop muted playsinline style="display:none;" onloadeddata="onThermalVideoLoaded('virtual_fence')" onerror="onThermalVideoError('virtual_fence')"></video>
+          <div class="thermal-placeholder" id="ph-virtual_fence">
+            <div class="thermal-ph-box">
+              <span class="thermal-ph-title">Thermal Sensor Feed</span>
+              <span class="thermal-ph-meta">Cam 1 · FLIR LWIR Stream</span>
+              <span class="thermal-ph-route">assets/Cam1_thermal.mp4</span>
+            </div>
           </div>
           <div class="feed-overlay-hint">Click to Enlarge</div>
         </div>
@@ -1305,10 +1330,14 @@
           </div>
         </div>
         <div class="feed-wrapper">
-          <video class="feed-video" src="assets/Cam2.mp4" autoplay loop muted playsinline></video>
-          <div class="thermal-hud-layer">
-            <div class="thermal-reticle"></div>
-            <div class="thermal-spectrum-badge">FLIR LWIR · 42.1°C</div>
+          <video class="feed-video feed-video-normal" src="assets/Cam2.mp4" autoplay loop muted playsinline></video>
+          <video class="feed-video feed-video-thermal" src="assets/Cam2_thermal.mp4" autoplay loop muted playsinline style="display:none;" onloadeddata="onThermalVideoLoaded('vehicle_detection')" onerror="onThermalVideoError('vehicle_detection')"></video>
+          <div class="thermal-placeholder" id="ph-vehicle_detection">
+            <div class="thermal-ph-box">
+              <span class="thermal-ph-title">Thermal Sensor Feed</span>
+              <span class="thermal-ph-meta">Cam 2 · FLIR LWIR Stream</span>
+              <span class="thermal-ph-route">assets/Cam2_thermal.mp4</span>
+            </div>
           </div>
           <div class="feed-overlay-hint">Click to Enlarge</div>
         </div>
@@ -1324,10 +1353,14 @@
           </div>
         </div>
         <div class="feed-wrapper">
-          <video class="feed-video" src="assets/Cam3.mp4" autoplay loop muted playsinline></video>
-          <div class="thermal-hud-layer">
-            <div class="thermal-reticle"></div>
-            <div class="thermal-spectrum-badge">FLIR LWIR · 36.5°C</div>
+          <video class="feed-video feed-video-normal" src="assets/Cam3.mp4" autoplay loop muted playsinline></video>
+          <video class="feed-video feed-video-thermal" src="assets/Cam3_thermal.mp4" autoplay loop muted playsinline style="display:none;" onloadeddata="onThermalVideoLoaded('human_detection')" onerror="onThermalVideoError('human_detection')"></video>
+          <div class="thermal-placeholder" id="ph-human_detection">
+            <div class="thermal-ph-box">
+              <span class="thermal-ph-title">Thermal Sensor Feed</span>
+              <span class="thermal-ph-meta">Cam 3 · FLIR LWIR Stream</span>
+              <span class="thermal-ph-route">assets/Cam3_thermal.mp4</span>
+            </div>
           </div>
           <div class="feed-overlay-hint">Click to Enlarge</div>
         </div>
@@ -1343,10 +1376,14 @@
           </div>
         </div>
         <div class="feed-wrapper">
-          <video class="feed-video" src="assets/Cam4.mp4" autoplay loop muted playsinline></video>
-          <div class="thermal-hud-layer">
-            <div class="thermal-reticle"></div>
-            <div class="thermal-spectrum-badge">FLIR LWIR · 38.2°C</div>
+          <video class="feed-video feed-video-normal" src="assets/Cam4.mp4" autoplay loop muted playsinline></video>
+          <video class="feed-video feed-video-thermal" src="assets/Cam4_thermal.mp4" autoplay loop muted playsinline style="display:none;" onloadeddata="onThermalVideoLoaded('anpr')" onerror="onThermalVideoError('anpr')"></video>
+          <div class="thermal-placeholder" id="ph-anpr">
+            <div class="thermal-ph-box">
+              <span class="thermal-ph-title">Thermal Sensor Feed</span>
+              <span class="thermal-ph-meta">Cam 4 · FLIR LWIR Stream</span>
+              <span class="thermal-ph-route">assets/Cam4_thermal.mp4</span>
+            </div>
           </div>
           <div class="feed-overlay-hint">Click to Enlarge</div>
         </div>
@@ -1362,10 +1399,14 @@
           </div>
         </div>
         <div class="feed-wrapper">
-          <video class="feed-video" src="assets/Cam5.mp4" autoplay loop muted playsinline></video>
-          <div class="thermal-hud-layer">
-            <div class="thermal-reticle"></div>
-            <div class="thermal-spectrum-badge">FLIR LWIR · 37.1°C</div>
+          <video class="feed-video feed-video-normal" src="assets/Cam5.mp4" autoplay loop muted playsinline></video>
+          <video class="feed-video feed-video-thermal" src="assets/Cam5_thermal.mp4" autoplay loop muted playsinline style="display:none;" onloadeddata="onThermalVideoLoaded('suspicious_activity')" onerror="onThermalVideoError('suspicious_activity')"></video>
+          <div class="thermal-placeholder" id="ph-suspicious_activity">
+            <div class="thermal-ph-box">
+              <span class="thermal-ph-title">Thermal Sensor Feed</span>
+              <span class="thermal-ph-meta">Cam 5 · FLIR LWIR Stream</span>
+              <span class="thermal-ph-route">assets/Cam5_thermal.mp4</span>
+            </div>
           </div>
           <div class="feed-overlay-hint">Click to Enlarge</div>
         </div>
@@ -1381,10 +1422,14 @@
           </div>
         </div>
         <div class="feed-wrapper">
-          <video class="feed-video" src="assets/Cam6.mp4" autoplay loop muted playsinline></video>
-          <div class="thermal-hud-layer">
-            <div class="thermal-reticle"></div>
-            <div class="thermal-spectrum-badge">FLIR LWIR · 36.6°C</div>
+          <video class="feed-video feed-video-normal" src="assets/Cam6.mp4" autoplay loop muted playsinline></video>
+          <video class="feed-video feed-video-thermal" src="assets/Cam6_thermal.mp4" autoplay loop muted playsinline style="display:none;" onloadeddata="onThermalVideoLoaded('facial_recognition')" onerror="onThermalVideoError('facial_recognition')"></video>
+          <div class="thermal-placeholder" id="ph-facial_recognition">
+            <div class="thermal-ph-box">
+              <span class="thermal-ph-title">Thermal Sensor Feed</span>
+              <span class="thermal-ph-meta">Cam 6 · FLIR LWIR Stream</span>
+              <span class="thermal-ph-route">assets/Cam6_thermal.mp4</span>
+            </div>
           </div>
           <div class="feed-overlay-hint">Click to Enlarge</div>
         </div>
@@ -1440,9 +1485,12 @@
         <div class="modal-feed-wrapper" id="modalFeedWrapper">
           <video id="enlargedVideo" autoplay loop muted playsinline></video>
           <div id="modalFenceLayer"></div>
-          <div class="thermal-hud-layer">
-            <div class="thermal-reticle"></div>
-            <div class="thermal-spectrum-badge" id="modalThermalBadge">FLIR LWIR · ACTIVE</div>
+          <div id="modalThermalPlaceholder" style="display:none;" class="modal-thermal-placeholder">
+            <div class="thermal-ph-box">
+              <span class="thermal-ph-title">Thermal Sensor Feed</span>
+              <span class="thermal-ph-meta" id="modalThermalMeta">FLIR LWIR Stream</span>
+              <span class="thermal-ph-route" id="modalThermalRoute">assets/Cam1_thermal.mp4</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1493,7 +1541,25 @@
     const modalFenceLayer = document.getElementById('modalFenceLayer');
     let activeEnlargedKey = null;
 
-    // Camera Vision Modes State (Normal vs. Thermal FLIR)
+    // Video Routes Configuration (Normal & Thermal)
+    const VIDEO_MAP = {
+      'virtual_fence': 'assets/Cam1.mp4',
+      'vehicle_detection': 'assets/Cam2.mp4',
+      'human_detection': 'assets/Cam3.mp4',
+      'anpr': 'assets/Cam4.mp4',
+      'suspicious_activity': 'assets/Cam5.mp4',
+      'facial_recognition': 'assets/Cam6.mp4'
+    };
+
+    const THERMAL_VIDEO_MAP = {
+      'virtual_fence': 'assets/Cam1_thermal.mp4',
+      'vehicle_detection': 'assets/Cam2_thermal.mp4',
+      'human_detection': 'assets/Cam3_thermal.mp4',
+      'anpr': 'assets/Cam4_thermal.mp4',
+      'suspicious_activity': 'assets/Cam5_thermal.mp4',
+      'facial_recognition': 'assets/Cam6_thermal.mp4'
+    };
+
     const camVisionModes = {
       'virtual_fence': 'normal',
       'vehicle_detection': 'normal',
@@ -1503,25 +1569,64 @@
       'facial_recognition': 'normal'
     };
 
+    const thermalVideoAvailable = {
+      'virtual_fence': false,
+      'vehicle_detection': false,
+      'human_detection': false,
+      'anpr': false,
+      'suspicious_activity': false,
+      'facial_recognition': false
+    };
+
+    function onThermalVideoLoaded(feedKey) {
+      thermalVideoAvailable[feedKey] = true;
+      const card = document.getElementById('card-' + feedKey);
+      if (card) card.classList.add('has-thermal-video');
+      if (activeEnlargedKey === feedKey && camVisionModes[feedKey] === 'thermal') {
+        const ph = document.getElementById('modalThermalPlaceholder');
+        if (ph) ph.style.display = 'none';
+        enlargedVideo.style.display = 'block';
+      }
+    }
+
+    function onThermalVideoError(feedKey) {
+      thermalVideoAvailable[feedKey] = false;
+      const card = document.getElementById('card-' + feedKey);
+      if (card) card.classList.remove('has-thermal-video');
+      if (activeEnlargedKey === feedKey && camVisionModes[feedKey] === 'thermal') {
+        const ph = document.getElementById('modalThermalPlaceholder');
+        if (ph) ph.style.display = 'flex';
+        enlargedVideo.style.display = 'none';
+      }
+    }
+
     function setCamVisionMode(feedKey, mode) {
       camVisionModes[feedKey] = mode;
       const card = document.getElementById('card-' + feedKey);
       const btnNormal = document.getElementById('btn-mode-' + feedKey + '-normal');
       const btnThermal = document.getElementById('btn-mode-' + feedKey + '-thermal');
+      const vidNormal = card ? card.querySelector('.feed-video-normal') : null;
+      const vidThermal = card ? card.querySelector('.feed-video-thermal') : null;
 
       if (card) {
         if (mode === 'thermal') {
           card.classList.add('thermal-mode');
+          if (thermalVideoAvailable[feedKey] && vidThermal) {
+            vidThermal.play().catch(() => {});
+          }
         } else {
           card.classList.remove('thermal-mode');
+          if (vidNormal) {
+            vidNormal.play().catch(() => {});
+          }
         }
       }
+
       if (btnNormal && btnThermal) {
         btnNormal.classList.toggle('active', mode === 'normal');
         btnThermal.classList.toggle('active', mode === 'thermal');
       }
 
-      // Sync modal if active
       if (activeEnlargedKey === feedKey) {
         setModalVisionMode(mode);
       }
@@ -1541,18 +1646,18 @@
     }
 
     function setModalVisionMode(mode) {
-      const wrapper = document.getElementById('modalFeedWrapper');
       const btnNormal = document.getElementById('modalModeNormal');
       const btnThermal = document.getElementById('modalModeThermal');
+      const ph = document.getElementById('modalThermalPlaceholder');
+      const meta = document.getElementById('modalThermalMeta');
+      const route = document.getElementById('modalThermalRoute');
 
-      if (wrapper) {
-        wrapper.classList.toggle('thermal-mode', mode === 'thermal');
-      }
       if (btnNormal && btnThermal) {
         btnNormal.classList.toggle('active', mode === 'normal');
         btnThermal.classList.toggle('active', mode === 'thermal');
       }
-      if (activeEnlargedKey && camVisionModes[activeEnlargedKey] !== undefined) {
+
+      if (activeEnlargedKey) {
         camVisionModes[activeEnlargedKey] = mode;
         const card = document.getElementById('card-' + activeEnlargedKey);
         const cardBtnNormal = document.getElementById('btn-mode-' + activeEnlargedKey + '-normal');
@@ -1561,6 +1666,31 @@
         if (cardBtnNormal && cardBtnThermal) {
           cardBtnNormal.classList.toggle('active', mode === 'normal');
           cardBtnThermal.classList.toggle('active', mode === 'thermal');
+        }
+
+        const camTitle = CAM_TITLE_MAP[activeEnlargedKey] || 'Camera Feed';
+
+        if (mode === 'thermal') {
+          const thermalSrc = THERMAL_VIDEO_MAP[activeEnlargedKey];
+          if (meta) meta.textContent = `${camTitle} · FLIR LWIR Stream`;
+          if (route) route.textContent = thermalSrc;
+
+          if (thermalVideoAvailable[activeEnlargedKey]) {
+            if (ph) ph.style.display = 'none';
+            enlargedVideo.style.display = 'block';
+            enlargedVideo.src = thermalSrc;
+            enlargedVideo.play().catch(() => {});
+          } else {
+            enlargedVideo.pause();
+            enlargedVideo.src = '';
+            enlargedVideo.style.display = 'none';
+            if (ph) ph.style.display = 'flex';
+          }
+        } else {
+          if (ph) ph.style.display = 'none';
+          enlargedVideo.style.display = 'block';
+          enlargedVideo.src = VIDEO_MAP[activeEnlargedKey];
+          enlargedVideo.play().catch(() => {});
         }
       }
     }
@@ -1572,20 +1702,10 @@
       const wrapper = document.getElementById('modalFeedWrapper');
       if (wrapper) {
         wrapper.style.aspectRatio = (feedKey === 'anpr') ? '16/9' : '4/3';
-        const currentMode = camVisionModes[feedKey] || 'normal';
-        setModalVisionMode(currentMode);
       }
 
-      if (VIDEO_MAP[feedKey]) {
-        enlargedVideo.style.display = 'block';
-        enlargedVideo.muted = true;
-        enlargedVideo.src = VIDEO_MAP[feedKey];
-        const cardVideo = document.querySelector('#card-' + feedKey + ' video');
-        if (cardVideo && cardVideo.currentTime) {
-          try { enlargedVideo.currentTime = cardVideo.currentTime; } catch(e) {}
-        }
-        enlargedVideo.play().catch(() => {});
-      }
+      const currentMode = camVisionModes[feedKey] || 'normal';
+      setModalVisionMode(currentMode);
 
       modalFenceLayer.innerHTML = '';
       modalOverlay.classList.add('active');
@@ -1598,46 +1718,10 @@
         enlargedVideo.src = '';
         activeEnlargedKey = null;
         modalFenceLayer.innerHTML = '';
-        const wrapper = document.getElementById('modalFeedWrapper');
-        if (wrapper) wrapper.classList.remove('thermal-mode');
+        const ph = document.getElementById('modalThermalPlaceholder');
+        if (ph) ph.style.display = 'none';
+        enlargedVideo.style.display = 'block';
       }
-    }
-
-    function inspectAlertFeed(feedKey) {
-      const camMap = {
-        'Cam 1': 'virtual_fence',
-        'Cam 2': 'vehicle_detection',
-        'Cam 3': 'human_detection',
-        'Cam 4': 'anpr',
-        'Cam 5': 'suspicious_activity',
-        'Cam 6': 'facial_recognition',
-        'Cam 7': 'thermal',
-        'Cam 8': 'drone',
-        'Cam 9': 'weapon',
-        'Cam 10': 'violence',
-        'virtual_fence': 'virtual_fence',
-        'vehicle_detection': 'vehicle_detection',
-        'human_detection': 'human_detection',
-        'anpr': 'anpr',
-        'suspicious_activity': 'suspicious_activity',
-        'facial_recognition': 'facial_recognition',
-        'thermal': 'thermal',
-        'drone': 'drone',
-        'weapon': 'weapon',
-        'violence': 'violence'
-      };
-      const resolvedKey = camMap[feedKey] || feedKey || 'virtual_fence';
-      openEnlarged(resolvedKey, CAM_TITLE_MAP[resolvedKey] || resolvedKey);
-    }
-
-    function openEvents() {
-      eventsDrawer.classList.add('active');
-      drawerOverlay.classList.add('active');
-    }
-
-    function closeEvents() {
-      eventsDrawer.classList.remove('active');
-      drawerOverlay.classList.remove('active');
     }
 
     function escapeHtml(str) {
