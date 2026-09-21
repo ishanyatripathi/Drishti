@@ -1074,9 +1074,286 @@
         font-size: 11px;
       }
     }
+
+    /* Google Translate Integration Styling */
+    .goog-te-banner-frame.skiptranslate, .goog-te-banner-frame {
+      display: none !important;
+    }
+    body {
+      top: 0px !important;
+    }
+    #google_translate_element {
+      display: none !important;
+    }
+    .goog-tooltip {
+      display: none !important;
+    }
+    .goog-tooltip:hover {
+      display: none !important;
+    }
+    .goog-text-highlight {
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+    /* Camera Search Widget */
+    .gov-search-wrap {
+      position: relative;
+    }
+    .gov-util-item-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: #475569;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      border-radius: 4px;
+      line-height: 1;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .gov-util-item-btn:hover {
+      color: #0f172a;
+      background: #e2e8f0;
+    }
+    .cam-search-popover {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      width: 280px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.2), 0 8px 10px -6px rgba(15, 23, 42, 0.1);
+      z-index: 350;
+      display: none;
+      padding: 8px;
+    }
+    .cam-search-popover.active {
+      display: block;
+    }
+    .cam-search-input-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 5px 8px;
+    }
+    .cam-search-input-row input {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 12px;
+      width: 100%;
+      color: #0f172a;
+    }
+    .cam-search-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      color: #64748b;
+      padding: 0 2px;
+    }
+    .cam-search-close:hover {
+      color: #0f172a;
+    }
+    .cam-search-results {
+      margin-top: 6px;
+      max-height: 190px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .cam-search-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      color: #334155;
+      text-decoration: none;
+      transition: background 0.12s ease;
+    }
+    .cam-search-item:hover, .cam-search-item.active {
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 600;
+    }
+    .cam-search-item-badge {
+      font-size: 10px;
+      font-weight: 600;
+      background: #e2e8f0;
+      color: #475569;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+    .card.cam-search-highlight {
+      animation: camSearchPulse 1.2s 2 ease-in-out;
+      border-color: #2563eb !important;
+    }
+    @keyframes camSearchPulse {
+      0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); border-color: #2563eb; }
+      50% { box-shadow: 0 0 0 14px rgba(37, 99, 235, 0); border-color: #3b82f6; }
+      100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+    }
+
+    /* Language Selector Dropdown */
+    .gov-lang-wrap {
+      position: relative;
+    }
+    .gov-lang-dropdown {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      width: 140px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+      z-index: 350;
+      display: none;
+      overflow: hidden;
+    }
+    .gov-lang-dropdown.active {
+      display: block;
+    }
+    .gov-lang-opt {
+      padding: 8px 12px;
+      font-size: 12px;
+      color: #334155;
+      cursor: pointer;
+      transition: background 0.12s ease;
+    }
+    .gov-lang-opt:hover {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+    .gov-lang-opt.active {
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 600;
+    }
+
+    /* Camera Navigation Tabs */
+    .cam-tabs-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 14px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+    .cam-tab-btn {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 6px 13px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .cam-tab-btn:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+      color: #0f172a;
+    }
+    .cam-tab-btn.active {
+      background: #0f172a;
+      border-color: #0f172a;
+      color: #ffffff;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.15);
+    }
+    .card.has-no-normal-video:not(.thermal-mode) .feed-video-normal {
+      display: none;
+    }
+    .card.has-no-normal-video:not(.thermal-mode) .normal-placeholder {
+      display: flex;
+    }
+    .normal-placeholder, .modal-normal-placeholder {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background: #080d1a;
+      color: #94a3b8;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .modal-normal-placeholder {
+      z-index: 2;
+    }
+
+    /* Enhanced Mobile Breakpoints */
+    @media (max-width: 768px) {
+      .gov-top-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        padding: 6px 12px;
+      }
+      .gov-utility-right {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .mha-main-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px;
+      }
+      .mha-brand-flank {
+        width: 100%;
+        flex-wrap: wrap;
+      }
+      .mha-initiatives-flank {
+        display: none;
+      }
+      .header-actions {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 8px;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .cam-tabs-bar {
+        padding: 0 2px 6px;
+      }
+      .cam-search-popover {
+        left: auto;
+        right: 0;
+        width: 250px;
+      }
+    }
+
   </style>
 </head>
 <body>
+  <div id="google_translate_element" style="display:none;"></div>
   <div class="top-nav-container">
     <!-- 1. Top Utility & Accessibility Bar (Official GOI Standard) -->
     <div class="gov-top-utility">
@@ -1088,14 +1365,29 @@
         </div>
         <div class="gov-utility-right">
           <a href="#main-content" class="gov-skip-link">SKIP TO MAIN CONTENT</a>
-          <span class="gov-util-item" title="Search">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          </span>
-          <div class="gov-text-size-tools" title="Accessibility Text Resizing">
-            <span onclick="adjustFontSize(-1)" title="Decrease Text Size">A-</span>
-            <span onclick="adjustFontSize(0)" title="Default Text Size">A</span>
-            <span onclick="adjustFontSize(1)" title="Increase Text Size">A+</span>
+          
+          <!-- Search Cam Feature -->
+          <div class="gov-search-wrap" id="govSearchWrap">
+            <button type="button" class="gov-util-item-btn" id="camSearchToggleBtn" onclick="toggleCamSearch(event)" title="Search Camera Feed (Cam 1 - Cam 7)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </button>
+            <div class="cam-search-popover" id="camSearchPopover">
+              <div class="cam-search-input-row">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="camSearchInput" placeholder="Search Cam (1-7)..." oninput="onCamSearchInput(this.value)" onkeydown="onCamSearchKeydown(event)" autocomplete="off">
+                <button type="button" class="cam-search-close" onclick="closeCamSearch(event)">&times;</button>
+              </div>
+              <div class="cam-search-results" id="camSearchResults"></div>
+            </div>
           </div>
+
+          <!-- Page Zoom Tools (A- / A / A+) -->
+          <div class="gov-text-size-tools" title="Page Zoom (Zoom in/out entire page)">
+            <span onclick="adjustPageZoom(-1)" title="Zoom Out Whole Page">A-</span>
+            <span onclick="adjustPageZoom(0)" title="Default Zoom (100%)">A</span>
+            <span onclick="adjustPageZoom(1)" title="Zoom In Whole Page">A+</span>
+          </div>
+
           <div class="gov-social-icons" title="MHA Social Channels">
             <a href="https://facebook.com" target="_blank" rel="noreferrer" title="Facebook">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -1110,9 +1402,17 @@
           <span class="gov-util-item" title="Sitemap">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
           </span>
-          <div class="gov-lang-select" title="Select Language">
-            <span>Language</span>
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+
+          <!-- Language Dropdown with Google Translate (Hindi / English) -->
+          <div class="gov-lang-wrap" id="govLangWrap">
+            <div class="gov-lang-select" id="govLangSelect" onclick="toggleLangMenu(event)" title="Select Language / भाषा चुनें">
+              <span id="currentLangLabel">Language</span>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="gov-lang-dropdown" id="govLangDropdown">
+              <div class="gov-lang-opt active" id="langOpt-en" onclick="selectLanguage('en')">English</div>
+              <div class="gov-lang-opt" id="langOpt-hi" onclick="selectLanguage('hi')">हिन्दी (Hindi)</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1297,6 +1597,18 @@
   </div>
 
       <main id="main-content">
+      <!-- Camera Navigation Tabs -->
+      <div class="cam-tabs-bar" id="camTabsBar">
+        <button type="button" class="cam-tab-btn active" id="camTab-all" onclick="filterCamTab('all')">All Feeds (7)</button>
+        <button type="button" class="cam-tab-btn" id="camTab-virtual_fence" onclick="filterCamTab('virtual_fence')">Cam 1 · Fence</button>
+        <button type="button" class="cam-tab-btn" id="camTab-vehicle_detection" onclick="filterCamTab('vehicle_detection')">Cam 2 · Vehicles</button>
+        <button type="button" class="cam-tab-btn" id="camTab-human_detection" onclick="filterCamTab('human_detection')">Cam 3 · Humans</button>
+        <button type="button" class="cam-tab-btn" id="camTab-anpr" onclick="filterCamTab('anpr')">Cam 4 · ANPR</button>
+        <button type="button" class="cam-tab-btn" id="camTab-suspicious_activity" onclick="filterCamTab('suspicious_activity')">Cam 5 · Activity</button>
+        <button type="button" class="cam-tab-btn" id="camTab-facial_recognition" onclick="filterCamTab('facial_recognition')">Cam 6 · Facial</button>
+        <button type="button" class="cam-tab-btn" id="camTab-cam7" onclick="filterCamTab('cam7')">Cam 7 · Drone / Border</button>
+      </div>
+
     <div class="grid" id="grid">
       <!-- Cam 1 -->
       <div class="card breach-glow" id="card-virtual_fence" onclick="openEnlarged('virtual_fence', 'Cam 1')">
@@ -1435,6 +1747,36 @@
           <div class="feed-overlay-hint">Click to Enlarge</div>
         </div>
       </div>
+
+      <!-- Cam 7 -->
+      <div class="card" id="card-cam7" onclick="openEnlarged('cam7', 'Cam 7')">
+        <div class="card-header">
+          <h2>Cam 7</h2>
+          <div class="cam-vision-toggle" onclick="event.stopPropagation()">
+            <button type="button" class="cam-mode-btn active" id="btn-mode-cam7-normal" onclick="setCamVisionMode('cam7', 'normal')">Normal</button>
+            <button type="button" class="cam-mode-btn" id="btn-mode-cam7-thermal" onclick="setCamVisionMode('cam7', 'thermal')">Thermal</button>
+          </div>
+        </div>
+        <div class="feed-wrapper">
+          <video class="feed-video feed-video-normal" src="assets/Cam7.mp4" autoplay loop muted playsinline onerror="onNormalVideoError('cam7')"></video>
+          <video class="feed-video feed-video-thermal" src="assets/Cam7_thermal.mp4" autoplay loop muted playsinline style="display:none;" onloadeddata="onThermalVideoLoaded('cam7')" onerror="onThermalVideoError('cam7')"></video>
+          <div class="thermal-placeholder" id="ph-cam7">
+            <div class="thermal-ph-box">
+              <span class="thermal-ph-title">Thermal Sensor Feed</span>
+              <span class="thermal-ph-meta">Cam 7 · FLIR LWIR Stream</span>
+              <span class="thermal-ph-route">assets/Cam7_thermal.mp4</span>
+            </div>
+          </div>
+          <div class="normal-placeholder" id="ph-normal-cam7">
+            <div class="thermal-ph-box">
+              <span class="thermal-ph-title">Optical Feed Stream</span>
+              <span class="thermal-ph-meta">Cam 7 · Drone / Aerial Sensor</span>
+              <span class="thermal-ph-route">assets/Cam7.mp4</span>
+            </div>
+          </div>
+          <div class="feed-overlay-hint">Click to Enlarge</div>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -1493,11 +1835,29 @@
               <span class="thermal-ph-route" id="modalThermalRoute">assets/Cam1_thermal.mp4</span>
             </div>
           </div>
+          <div id="modalNormalPlaceholder" style="display:none;" class="modal-normal-placeholder">
+            <div class="thermal-ph-box">
+              <span class="thermal-ph-title">Optical Video Feed</span>
+              <span class="thermal-ph-meta" id="modalNormalMeta">Cam 7 · Drone Stream</span>
+              <span class="thermal-ph-route" id="modalNormalRoute">assets/Cam7.mp4</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Google Translate Element API -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi',
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   <script>
     const CAM_TITLE_MAP = {
       'virtual_fence': 'Cam 1',
@@ -1506,6 +1866,7 @@
       'anpr': 'Cam 4',
       'suspicious_activity': 'Cam 5',
       'facial_recognition': 'Cam 6',
+      'cam7': 'Cam 7',
       'thermal': 'Cam 7',
       'drone': 'Cam 8',
       'weapon': 'Cam 9',
@@ -1540,7 +1901,8 @@
       'human_detection': 'assets/Cam3.mp4',
       'anpr': 'assets/Cam4.mp4',
       'suspicious_activity': 'assets/Cam5.mp4',
-      'facial_recognition': 'assets/Cam6.mp4'
+      'facial_recognition': 'assets/Cam6.mp4',
+      'cam7': 'assets/Cam7.mp4'
     };
 
     const THERMAL_VIDEO_MAP = {
@@ -1549,7 +1911,8 @@
       'human_detection': 'assets/Cam3_thermal.mp4',
       'anpr': 'assets/Cam4_thermal.mp4',
       'suspicious_activity': 'assets/Cam5_thermal.mp4',
-      'facial_recognition': 'assets/Cam6_thermal.mp4'
+      'facial_recognition': 'assets/Cam6_thermal.mp4',
+      'cam7': 'assets/Cam7_thermal.mp4'
     };
 
     const camVisionModes = {
@@ -1558,7 +1921,8 @@
       'human_detection': 'normal',
       'anpr': 'normal',
       'suspicious_activity': 'normal',
-      'facial_recognition': 'normal'
+      'facial_recognition': 'normal',
+      'cam7': 'normal'
     };
 
     const thermalVideoAvailable = {
@@ -1567,9 +1931,27 @@
       'human_detection': false,
       'anpr': false,
       'suspicious_activity': false,
-      'facial_recognition': false
+      'facial_recognition': false,
+      'cam7': false
     };
 
+    const normalVideoAvailable = {
+      'virtual_fence': true,
+      'vehicle_detection': true,
+      'human_detection': true,
+      'anpr': true,
+      'suspicious_activity': true,
+      'facial_recognition': true,
+      'cam7': false
+    };
+
+    function onNormalVideoError(feedKey) {
+      normalVideoAvailable[feedKey] = false;
+      const card = document.getElementById('card-' + feedKey);
+      if (card) {
+        card.classList.add('has-no-normal-video');
+      }
+    }
     function onThermalVideoLoaded(feedKey) {
       thermalVideoAvailable[feedKey] = true;
       const card = document.getElementById('card-' + feedKey);
@@ -1577,6 +1959,8 @@
       if (activeEnlargedKey === feedKey && camVisionModes[feedKey] === 'thermal') {
         const ph = document.getElementById('modalThermalPlaceholder');
         if (ph) ph.style.display = 'none';
+        const nph = document.getElementById('modalNormalPlaceholder');
+        if (nph) nph.style.display = 'none';
         enlargedVideo.style.display = 'block';
       }
     }
@@ -1680,9 +2064,25 @@
           }
         } else {
           if (ph) ph.style.display = 'none';
-          enlargedVideo.style.display = 'block';
-          enlargedVideo.src = VIDEO_MAP[activeEnlargedKey];
-          enlargedVideo.play().catch(() => {});
+          const normalPh = document.getElementById('modalNormalPlaceholder');
+          const normalMeta = document.getElementById('modalNormalMeta');
+          const normalRoute = document.getElementById('modalNormalRoute');
+
+          if (normalVideoAvailable[activeEnlargedKey] === false) {
+            enlargedVideo.pause();
+            enlargedVideo.src = '';
+            enlargedVideo.style.display = 'none';
+            if (normalPh) {
+              normalPh.style.display = 'flex';
+              if (normalMeta) normalMeta.textContent = `${camTitle} · Optical Stream`;
+              if (normalRoute) normalRoute.textContent = VIDEO_MAP[activeEnlargedKey] || '';
+            }
+          } else {
+            if (normalPh) normalPh.style.display = 'none';
+            enlargedVideo.style.display = 'block';
+            enlargedVideo.src = VIDEO_MAP[activeEnlargedKey];
+            enlargedVideo.play().catch(() => {});
+          }
         }
       }
     }
@@ -1829,6 +2229,199 @@
         eventsList.appendChild(card);
       });
     }
+
+
+    // ----------------------------------------------------
+    // 1. Full Page Zoom Feature (A- / A / A+)
+    // ----------------------------------------------------
+    let currentZoomLevel = 1.0;
+    function adjustPageZoom(delta) {
+      if (delta === 0) {
+        currentZoomLevel = 1.0;
+      } else {
+        currentZoomLevel = Math.max(0.75, Math.min(1.35, Math.round((currentZoomLevel + delta * 0.08) * 100) / 100));
+      }
+      document.body.style.zoom = currentZoomLevel;
+    }
+    // Backward compatibility for adjustFontSize calls
+    function adjustFontSize(delta) {
+      adjustPageZoom(delta);
+    }
+
+    // ----------------------------------------------------
+    // 2. Camera Search Feature
+    // ----------------------------------------------------
+    const CAM_LIST = [
+      { key: 'virtual_fence', label: 'Cam 1', desc: 'Virtual Fence / Perimeter Breach', sector: 'Sector 1' },
+      { key: 'vehicle_detection', label: 'Cam 2', desc: 'Vehicle Trajectory & Tracking', sector: 'Sector 2' },
+      { key: 'human_detection', label: 'Cam 3', desc: 'Human Detection & People Count', sector: 'Sector 3' },
+      { key: 'anpr', label: 'Cam 4', desc: 'ANPR / License Plate Recognition', sector: 'Sector 4' },
+      { key: 'suspicious_activity', label: 'Cam 5', desc: 'Suspicious Activity & Blindspot', sector: 'Sector 5' },
+      { key: 'facial_recognition', label: 'Cam 6', desc: 'Face Recognition & Bio Match', sector: 'Sector 6' },
+      { key: 'cam7', label: 'Cam 7', desc: 'Drone / Aerial Border Surveillance', sector: 'Sector 7' }
+    ];
+
+    function toggleCamSearch(e) {
+      if (e) e.stopPropagation();
+      const popover = document.getElementById('camSearchPopover');
+      if (!popover) return;
+      const isOpen = popover.classList.contains('active');
+      if (isOpen) {
+        closeCamSearch();
+      } else {
+        openCamSearch();
+      }
+    }
+
+    function openCamSearch() {
+      const popover = document.getElementById('camSearchPopover');
+      const input = document.getElementById('camSearchInput');
+      if (popover) {
+        popover.classList.add('active');
+        renderCamSearchResults('');
+        if (input) {
+          input.value = '';
+          setTimeout(() => input.focus(), 80);
+        }
+      }
+      closeLangMenu();
+    }
+
+    function closeCamSearch() {
+      const popover = document.getElementById('camSearchPopover');
+      if (popover) popover.classList.remove('active');
+    }
+
+    function onCamSearchInput(val) {
+      renderCamSearchResults(val);
+    }
+
+    function onCamSearchKeydown(e) {
+      if (e.key === 'Enter') {
+        const firstItem = document.querySelector('.cam-search-item');
+        if (firstItem) firstItem.click();
+      } else if (e.key === 'Escape') {
+        closeCamSearch();
+      }
+    }
+
+    function renderCamSearchResults(query) {
+      const container = document.getElementById('camSearchResults');
+      if (!container) return;
+      const q = (query || '').trim().toLowerCase();
+      const filtered = CAM_LIST.filter(c => {
+        if (!q) return true;
+        return c.label.toLowerCase().includes(q) ||
+               c.desc.toLowerCase().includes(q) ||
+               c.sector.toLowerCase().includes(q) ||
+               c.key.toLowerCase().includes(q) ||
+               q.replace(/[^0-9]/g, '') === c.label.replace(/[^0-9]/g, '');
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<div style="padding:10px;text-align:center;font-size:11px;color:#94a3b8;">No cameras matching search</div>';
+        return;
+      }
+
+      container.innerHTML = filtered.map(c => `
+        <div class="cam-search-item" onclick="jumpToCam('${c.key}')">
+          <div>
+            <strong>${escapeHtml(c.label)}</strong>
+            <span style="font-size:11px;color:#64748b;margin-left:5px;">${escapeHtml(c.desc)}</span>
+          </div>
+          <span class="cam-search-item-badge">${escapeHtml(c.sector)}</span>
+        </div>
+      `).join('');
+    }
+
+    function jumpToCam(feedKey) {
+      closeCamSearch();
+      filterCamTab('all');
+      const card = document.getElementById('card-' + feedKey);
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.classList.remove('cam-search-highlight');
+        // Trigger reflow for animation restart
+        void card.offsetWidth;
+        card.classList.add('cam-search-highlight');
+        setTimeout(() => card.classList.remove('cam-search-highlight'), 2600);
+      }
+    }
+
+    // ----------------------------------------------------
+    // 3. Language Selector & Google Translate Real-Time
+    // ----------------------------------------------------
+    function toggleLangMenu(e) {
+      if (e) e.stopPropagation();
+      const dd = document.getElementById('govLangDropdown');
+      if (!dd) return;
+      dd.classList.toggle('active');
+      closeCamSearch();
+    }
+
+    function closeLangMenu() {
+      const dd = document.getElementById('govLangDropdown');
+      if (dd) dd.classList.remove('active');
+    }
+
+    function selectLanguage(lang) {
+      const currentLangLabel = document.getElementById('currentLangLabel');
+      if (currentLangLabel) {
+        currentLangLabel.textContent = (lang === 'hi') ? 'हिन्दी' : 'English';
+      }
+      document.querySelectorAll('.gov-lang-opt').forEach(el => el.classList.remove('active'));
+      const activeOpt = document.getElementById('langOpt-' + lang);
+      if (activeOpt) activeOpt.classList.add('active');
+
+      // Trigger Google Translate widget combo select
+      const gtCombo = document.querySelector('select.goog-te-combo');
+      if (gtCombo) {
+        gtCombo.value = lang;
+        gtCombo.dispatchEvent(new Event('change'));
+      } else {
+        // Fallback using official googtrans cookie
+        const domain = location.hostname === 'localhost' || location.hostname === '127.0.0.1' ? '' : `domain=.${location.hostname};`;
+        document.cookie = `googtrans=/en/${lang}; path=/; ${domain}`;
+        location.reload();
+      }
+      closeLangMenu();
+    }
+
+    // ----------------------------------------------------
+    // 4. Camera Navigation Tab Filtering
+    // ----------------------------------------------------
+    let activeCamFilter = 'all';
+    function filterCamTab(targetKey) {
+      activeCamFilter = targetKey;
+      document.querySelectorAll('.cam-tab-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById('camTab-' + targetKey);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const allCards = document.querySelectorAll('.grid .card');
+      if (targetKey === 'all') {
+        allCards.forEach(c => c.style.display = '');
+      } else {
+        allCards.forEach(c => {
+          c.style.display = (c.id === 'card-' + targetKey) ? '' : 'none';
+        });
+        const targetCard = document.getElementById('card-' + targetKey);
+        if (targetCard) {
+          targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    }
+
+    // Global click listener to close popovers
+    document.addEventListener('click', (e) => {
+      const searchWrap = document.getElementById('govSearchWrap');
+      if (searchWrap && !searchWrap.contains(e.target)) {
+        closeCamSearch();
+      }
+      const langWrap = document.getElementById('govLangWrap');
+      if (langWrap && !langWrap.contains(e.target)) {
+        closeLangMenu();
+      }
+    });
 
     // Text Resizing Utility
     let currentFontSizeOffset = 0;
