@@ -512,191 +512,126 @@
     .card:hover .feed-overlay-hint { opacity: 1; }
 
     
-    /* ── Category Switcher Tabs ── */
-    .feed-tabs-bar {
-      max-width: 1440px;
-      margin: 12px auto 0;
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border-bottom: 2px solid #e2e8f0;
-    }
-    .feed-tab-btn {
+        /* ── Vision Mode Controls (Normal vs. Thermal FLIR) ── */
+    .vision-mode-switch {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 18px;
-      background: transparent;
-      border: none;
-      border-bottom: 3px solid transparent;
-      margin-bottom: -2px;
-      font-size: 13.5px;
-      font-weight: 700;
-      color: #64748b;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .feed-tab-btn:hover {
-      color: #0f172a;
+      gap: 6px;
       background: #f1f5f9;
-      border-radius: 6px 6px 0 0;
+      border: 1px solid #cbd5e1;
+      padding: 2px 4px;
+      border-radius: 6px;
     }
-    .feed-tab-btn.active {
-      color: #1e3a8a;
-      border-bottom-color: #1e3a8a;
-      background: rgba(30, 58, 138, 0.05);
-      border-radius: 6px 6px 0 0;
-    }
-    .feed-tab-count {
+    .vision-switch-label {
       font-size: 11px;
       font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 12px;
-      background: #e2e8f0;
       color: #475569;
+      padding-left: 4px;
+      letter-spacing: 0.02em;
     }
-    .feed-tab-btn.active .feed-tab-count {
+    .vision-pill-group {
+      display: inline-flex;
+      gap: 2px;
+    }
+    .vision-pill-btn {
+      border: none;
+      background: transparent;
+      color: #64748b;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .vision-pill-btn:hover {
+      color: #0f172a;
+    }
+    .vision-pill-btn.active {
       background: #1e3a8a;
       color: #ffffff;
     }
 
-    /* Tactical HUD Placeholder for Cams 7-10 */
-    .tactical-feed {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      min-height: 220px;
-      background: #050b14;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      color: #38bdf8;
-      font-family: 'Courier New', Courier, monospace !important;
-    }
-    .tactical-grid-overlay {
-      position: absolute;
-      inset: 0;
-      background-image: 
-        linear-gradient(rgba(56, 189, 248, 0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(56, 189, 248, 0.07) 1px, transparent 1px);
-      background-size: 24px 24px;
-      pointer-events: none;
-    }
-    .tactical-scan-beam {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.8), transparent);
-      box-shadow: 0 0 10px #38bdf8;
-      animation: scanSweep 3.5s infinite linear;
-      pointer-events: none;
-    }
-    @keyframes scanSweep {
-      0% { top: 0%; opacity: 0.8; }
-      50% { top: 96%; opacity: 0.8; }
-      100% { top: 0%; opacity: 0.8; }
-    }
-    .tactical-radar-center {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100px; height: 100px;
-      border: 1px dashed rgba(56, 189, 248, 0.35);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-    }
-    .tactical-radar-center::before {
-      content: '';
-      position: absolute;
-      width: 55px; height: 55px;
-      border: 1px solid rgba(56, 189, 248, 0.6);
-      border-radius: 50%;
-    }
-    .tactical-reticle-cross {
-      position: absolute;
-      width: 130px; height: 1px;
-      background: rgba(56, 189, 248, 0.3);
-    }
-    .tactical-reticle-cross-v {
-      position: absolute;
-      height: 130px; width: 1px;
-      background: rgba(56, 189, 248, 0.3);
-    }
-    .tactical-hud-top {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 12px;
-      font-size: 10px;
-      background: linear-gradient(180deg, rgba(5, 11, 20, 0.85), transparent);
-      letter-spacing: 0.05em;
-    }
-    .tactical-hud-bottom {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 12px;
-      font-size: 9.5px;
-      background: linear-gradient(0deg, rgba(5, 11, 20, 0.9), transparent);
-    }
-    .tactical-status-chip {
+    /* Per-Card Mode Buttons */
+    .cam-vision-toggle {
       display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: rgba(14, 116, 144, 0.3);
-      border: 1px solid rgba(56, 189, 248, 0.5);
+      gap: 2px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 1px;
+    }
+    .cam-mode-btn {
+      border: none;
+      background: transparent;
+      color: #64748b;
+      font-size: 10px;
+      font-weight: 700;
       padding: 2px 7px;
       border-radius: 3px;
-      font-weight: 700;
-      color: #38bdf8;
+      cursor: pointer;
+      transition: all 0.15s ease;
     }
-    .tactical-chip-radar { color: #f59e0b; border-color: rgba(245, 158, 11, 0.5); background: rgba(245, 158, 11, 0.15); }
-    .tactical-chip-alert { color: #ef4444; border-color: rgba(239, 68, 68, 0.6); background: rgba(239, 68, 68, 0.2); }
-    .tactical-chip-drone { color: #a855f7; border-color: rgba(168, 85, 247, 0.5); background: rgba(168, 85, 247, 0.15); }
-    .tactical-hud-center-title {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2;
-      text-align: center;
-      pointer-events: none;
+    .cam-mode-btn:hover {
+      color: #0f172a;
     }
-    .tactical-center-name {
-      font-size: 12.5px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .cam-mode-btn.active {
+      background: #1e3a8a;
       color: #ffffff;
-      text-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
-    }
-    .tactical-center-desc {
-      font-size: 9.5px;
-      color: #94a3b8;
-      margin-top: 3px;
-    }
-    .flir-spectrum-bar {
-      width: 65px;
-      height: 6px;
-      border-radius: 2px;
-      background: linear-gradient(90deg, #1e1b4b, #3b82f6, #06b6d4, #eab308, #ef4444, #ffffff);
-      border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
-    /* Severity & Pill Additions */
-    .pill-weapon   { background: #ffe4e6; color: #be123c; }
-    .pill-thermal  { background: #ffedd5; color: #c2410c; }
-    .pill-drone    { background: #ede9fe; color: #6d28d9; }
-    .pill-violence { background: #fef2f2; color: #b91c1c; }
-    .sev-critical  { background: #dc2626; box-shadow: 0 0 6px #dc2626; }
+    /* Thermal Mode Styling */
+    .card.thermal-mode .feed-video,
+    .modal-feed-wrapper.thermal-mode #enlargedVideo {
+      filter: contrast(185%) brightness(105%) hue-rotate(195deg) saturate(230%);
+    }
+    .thermal-hud-layer {
+      display: none;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .card.thermal-mode .thermal-hud-layer,
+    .modal-feed-wrapper.thermal-mode .thermal-hud-layer {
+      display: block;
+    }
+    .thermal-reticle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      border: 1px dashed rgba(255, 255, 255, 0.45);
+      border-radius: 50%;
+    }
+    .thermal-reticle::before,
+    .thermal-reticle::after {
+      content: '';
+      position: absolute;
+      background: rgba(255, 255, 255, 0.55);
+    }
+    .thermal-reticle::before {
+      top: 50%; left: -6px; right: -6px; height: 1px;
+    }
+    .thermal-reticle::after {
+      left: 50%; top: -6px; bottom: -6px; width: 1px;
+    }
+    .thermal-spectrum-badge {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background: rgba(15, 23, 42, 0.85);
+      color: #f8fafc;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 3px;
+      letter-spacing: 0.04em;
+      font-family: 'Courier New', Courier, monospace !important;
+    }
 
     /* Slide-out Drawer */
     .drawer-overlay {
@@ -1304,6 +1239,15 @@
 
       <!-- Action Buttons -->
       <div class="header-actions">
+        <!-- Surveillance Vision Mode Toggle (Optical vs Thermal) -->
+        <div class="vision-mode-switch" title="Toggle Surveillance Vision Spectrum">
+          <span class="vision-switch-label">Spectrum:</span>
+          <div class="vision-pill-group">
+            <button type="button" class="vision-pill-btn active" id="globalVisionNormal" onclick="setGlobalVisionMode('normal')">Optical</button>
+            <button type="button" class="vision-pill-btn" id="globalVisionThermal" onclick="setGlobalVisionMode('thermal')">Thermal FLIR</button>
+          </div>
+        </div>
+
         <button class="btn-export" onclick="exportIncidentLog()" title="Download Incident Log (CSV)">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           <span class="export-label-desktop">Download CSV</span>
@@ -1330,30 +1274,23 @@
     </div>
   </div>
 
-  <main id="main-content">
-    <!-- Category Switcher Tabs -->
-    <div class="feed-tabs-bar">
-      <button class="feed-tab-btn active" id="tabBtnOptical" onclick="switchFeedTab('optical')">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        <span>Optical Ground Surveillance</span>
-        <span class="feed-tab-count">Cams 1–6</span>
-      </button>
-      <button class="feed-tab-btn" id="tabBtnTactical" onclick="switchFeedTab('tactical')">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-        <span>Tactical, Thermal & Aerial Feeds</span>
-        <span class="feed-tab-count">Cams 7–10</span>
-      </button>
-    </div>
-
-    <!-- Grid 1: Optical Ground Surveillance (Cams 1-6) -->
-    <div class="grid" id="gridOptical">
+    <main id="main-content">
+    <div class="grid" id="grid">
       <!-- Cam 1 -->
       <div class="card breach-glow" id="card-virtual_fence" onclick="openEnlarged('virtual_fence', 'Cam 1')">
         <div class="card-header">
           <h2>Cam 1</h2>
+          <div class="cam-vision-toggle" onclick="event.stopPropagation()">
+            <button type="button" class="cam-mode-btn active" id="btn-mode-virtual_fence-normal" onclick="setCamVisionMode('virtual_fence', 'normal')">Normal</button>
+            <button type="button" class="cam-mode-btn" id="btn-mode-virtual_fence-thermal" onclick="setCamVisionMode('virtual_fence', 'thermal')">Thermal</button>
+          </div>
         </div>
         <div class="feed-wrapper">
           <video class="feed-video" src="assets/Cam1.mp4" autoplay loop muted playsinline></video>
+          <div class="thermal-hud-layer">
+            <div class="thermal-reticle"></div>
+            <div class="thermal-spectrum-badge">FLIR LWIR · 36.8°C</div>
+          </div>
           <div class="feed-overlay-hint">Click to Enlarge</div>
         </div>
       </div>
@@ -1362,9 +1299,17 @@
       <div class="card" id="card-vehicle_detection" onclick="openEnlarged('vehicle_detection', 'Cam 2')">
         <div class="card-header">
           <h2>Cam 2</h2>
+          <div class="cam-vision-toggle" onclick="event.stopPropagation()">
+            <button type="button" class="cam-mode-btn active" id="btn-mode-vehicle_detection-normal" onclick="setCamVisionMode('vehicle_detection', 'normal')">Normal</button>
+            <button type="button" class="cam-mode-btn" id="btn-mode-vehicle_detection-thermal" onclick="setCamVisionMode('vehicle_detection', 'thermal')">Thermal</button>
+          </div>
         </div>
         <div class="feed-wrapper">
           <video class="feed-video" src="assets/Cam2.mp4" autoplay loop muted playsinline></video>
+          <div class="thermal-hud-layer">
+            <div class="thermal-reticle"></div>
+            <div class="thermal-spectrum-badge">FLIR LWIR · 42.1°C</div>
+          </div>
           <div class="feed-overlay-hint">Click to Enlarge</div>
         </div>
       </div>
@@ -1373,9 +1318,17 @@
       <div class="card" id="card-human_detection" onclick="openEnlarged('human_detection', 'Cam 3')">
         <div class="card-header">
           <h2>Cam 3</h2>
+          <div class="cam-vision-toggle" onclick="event.stopPropagation()">
+            <button type="button" class="cam-mode-btn active" id="btn-mode-human_detection-normal" onclick="setCamVisionMode('human_detection', 'normal')">Normal</button>
+            <button type="button" class="cam-mode-btn" id="btn-mode-human_detection-thermal" onclick="setCamVisionMode('human_detection', 'thermal')">Thermal</button>
+          </div>
         </div>
         <div class="feed-wrapper">
           <video class="feed-video" src="assets/Cam3.mp4" autoplay loop muted playsinline></video>
+          <div class="thermal-hud-layer">
+            <div class="thermal-reticle"></div>
+            <div class="thermal-spectrum-badge">FLIR LWIR · 36.5°C</div>
+          </div>
           <div class="feed-overlay-hint">Click to Enlarge</div>
         </div>
       </div>
@@ -1384,9 +1337,17 @@
       <div class="card" id="card-anpr" onclick="openEnlarged('anpr', 'Cam 4')">
         <div class="card-header">
           <h2>Cam 4</h2>
+          <div class="cam-vision-toggle" onclick="event.stopPropagation()">
+            <button type="button" class="cam-mode-btn active" id="btn-mode-anpr-normal" onclick="setCamVisionMode('anpr', 'normal')">Normal</button>
+            <button type="button" class="cam-mode-btn" id="btn-mode-anpr-thermal" onclick="setCamVisionMode('anpr', 'thermal')">Thermal</button>
+          </div>
         </div>
         <div class="feed-wrapper">
           <video class="feed-video" src="assets/Cam4.mp4" autoplay loop muted playsinline></video>
+          <div class="thermal-hud-layer">
+            <div class="thermal-reticle"></div>
+            <div class="thermal-spectrum-badge">FLIR LWIR · 38.2°C</div>
+          </div>
           <div class="feed-overlay-hint">Click to Enlarge</div>
         </div>
       </div>
@@ -1395,9 +1356,17 @@
       <div class="card breach-glow" id="card-suspicious_activity" onclick="openEnlarged('suspicious_activity', 'Cam 5')">
         <div class="card-header">
           <h2>Cam 5</h2>
+          <div class="cam-vision-toggle" onclick="event.stopPropagation()">
+            <button type="button" class="cam-mode-btn active" id="btn-mode-suspicious_activity-normal" onclick="setCamVisionMode('suspicious_activity', 'normal')">Normal</button>
+            <button type="button" class="cam-mode-btn" id="btn-mode-suspicious_activity-thermal" onclick="setCamVisionMode('suspicious_activity', 'thermal')">Thermal</button>
+          </div>
         </div>
         <div class="feed-wrapper">
           <video class="feed-video" src="assets/Cam5.mp4" autoplay loop muted playsinline></video>
+          <div class="thermal-hud-layer">
+            <div class="thermal-reticle"></div>
+            <div class="thermal-spectrum-badge">FLIR LWIR · 37.1°C</div>
+          </div>
           <div class="feed-overlay-hint">Click to Enlarge</div>
         </div>
       </div>
@@ -1406,139 +1375,16 @@
       <div class="card" id="card-facial_recognition" onclick="openEnlarged('facial_recognition', 'Cam 6')">
         <div class="card-header">
           <h2>Cam 6</h2>
+          <div class="cam-vision-toggle" onclick="event.stopPropagation()">
+            <button type="button" class="cam-mode-btn active" id="btn-mode-facial_recognition-normal" onclick="setCamVisionMode('facial_recognition', 'normal')">Normal</button>
+            <button type="button" class="cam-mode-btn" id="btn-mode-facial_recognition-thermal" onclick="setCamVisionMode('facial_recognition', 'thermal')">Thermal</button>
+          </div>
         </div>
         <div class="feed-wrapper">
           <video class="feed-video" src="assets/Cam6.mp4" autoplay loop muted playsinline></video>
-          <div class="feed-overlay-hint">Click to Enlarge</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Grid 2: Tactical, Thermal & Aerial Feeds (Cams 7-10) -->
-    <div class="grid" id="gridTactical" style="display: none;">
-      <!-- Cam 7: Thermal Perimeter -->
-      <div class="card breach-glow" id="card-thermal" onclick="openEnlarged('thermal', 'Cam 7')">
-        <div class="card-header">
-          <h2>Cam 7</h2>
-        </div>
-        <div class="feed-wrapper">
-          <div class="tactical-feed">
-            <div class="tactical-grid-overlay"></div>
-            <div class="tactical-scan-beam"></div>
-            <div class="tactical-radar-center">
-              <div class="tactical-reticle-cross"></div>
-              <div class="tactical-reticle-cross-v"></div>
-            </div>
-            <div class="tactical-hud-top">
-              <span class="tactical-status-chip tactical-chip-radar">● FLIR LWIR 640</span>
-              <span>CALIBRATING</span>
-              <div class="flir-spectrum-bar" title="Thermal Sensitivity Curve"></div>
-            </div>
-            <div class="tactical-hud-center-title">
-              <div class="tactical-center-name">Thermal Sensor Feed</div>
-              <div class="tactical-center-desc">FLIR Long-Wave IR · Zero-Lux Perimeter Scan</div>
-            </div>
-            <div class="tactical-hud-bottom">
-              <span>FOV: 32° × 24°</span>
-              <span>8.2μm - 14μm</span>
-              <span>STANDBY / ACTIVE</span>
-            </div>
-          </div>
-          <div class="feed-overlay-hint">Click to Enlarge</div>
-        </div>
-      </div>
-
-      <!-- Cam 8: Aerial Drone -->
-      <div class="card" id="card-drone" onclick="openEnlarged('drone', 'Cam 8')">
-        <div class="card-header">
-          <h2>Cam 8</h2>
-        </div>
-        <div class="feed-wrapper">
-          <div class="tactical-feed">
-            <div class="tactical-grid-overlay"></div>
-            <div class="tactical-scan-beam"></div>
-            <div class="tactical-radar-center">
-              <div class="tactical-reticle-cross"></div>
-              <div class="tactical-reticle-cross-v"></div>
-            </div>
-            <div class="tactical-hud-top">
-              <span class="tactical-status-chip tactical-chip-drone">● UAV RECON</span>
-              <span>ALT: 120M AGL</span>
-              <span>GPS: 31°12'N 74°28'E</span>
-            </div>
-            <div class="tactical-hud-center-title">
-              <div class="tactical-center-name">Aerial Drone Stream</div>
-              <div class="tactical-center-desc">Overhead Object Detection & Convoy Tracking</div>
-            </div>
-            <div class="tactical-hud-bottom">
-              <span>GIMBAL: -45° TILT</span>
-              <span>BATTERY: 84%</span>
-              <span>TELEMETRY SYNCED</span>
-            </div>
-          </div>
-          <div class="feed-overlay-hint">Click to Enlarge</div>
-        </div>
-      </div>
-
-      <!-- Cam 9: Weapon Scanner -->
-      <div class="card breach-glow" id="card-weapon" onclick="openEnlarged('weapon', 'Cam 9')">
-        <div class="card-header">
-          <h2>Cam 9</h2>
-        </div>
-        <div class="feed-wrapper">
-          <div class="tactical-feed">
-            <div class="tactical-grid-overlay"></div>
-            <div class="tactical-scan-beam"></div>
-            <div class="tactical-radar-center">
-              <div class="tactical-reticle-cross"></div>
-              <div class="tactical-reticle-cross-v"></div>
-            </div>
-            <div class="tactical-hud-top">
-              <span class="tactical-status-chip tactical-chip-alert">● BALLISTIC AI</span>
-              <span>GATE B-4</span>
-              <span>THREAT MONITOR</span>
-            </div>
-            <div class="tactical-hud-center-title">
-              <div class="tactical-center-name">Weapon Detection</div>
-              <div class="tactical-center-desc">AI Firearm & Harmful Object Threat Scanner</div>
-            </div>
-            <div class="tactical-hud-bottom">
-              <span>SCAN RATE: 30 FPS</span>
-              <span>CONCEALED SCAN</span>
-              <span>STATUS: ARMED</span>
-            </div>
-          </div>
-          <div class="feed-overlay-hint">Click to Enlarge</div>
-        </div>
-      </div>
-
-      <!-- Cam 10: Violence & Conflict -->
-      <div class="card" id="card-violence" onclick="openEnlarged('violence', 'Cam 10')">
-        <div class="card-header">
-          <h2>Cam 10</h2>
-        </div>
-        <div class="feed-wrapper">
-          <div class="tactical-feed">
-            <div class="tactical-grid-overlay"></div>
-            <div class="tactical-scan-beam"></div>
-            <div class="tactical-radar-center">
-              <div class="tactical-reticle-cross"></div>
-              <div class="tactical-reticle-cross-v"></div>
-            </div>
-            <div class="tactical-hud-top">
-              <span class="tactical-status-chip tactical-chip-alert">● CONFLICT AI</span>
-              <span>SECTOR B</span>
-              <span>KINETIC ANOMALY</span>
-            </div>
-            <div class="tactical-hud-center-title">
-              <div class="tactical-center-name">Fight & Anomaly Detection</div>
-              <div class="tactical-center-desc">Physical Altercation & Crowd Conflict Monitor</div>
-            </div>
-            <div class="tactical-hud-bottom">
-              <span>SENSITIVITY: HIGH</span>
-              <span>POSE KINEMATICS</span>
-              <span>STATUS: ACTIVE</span>
-            </div>
+          <div class="thermal-hud-layer">
+            <div class="thermal-reticle"></div>
+            <div class="thermal-spectrum-badge">FLIR LWIR · 36.6°C</div>
           </div>
           <div class="feed-overlay-hint">Click to Enlarge</div>
         </div>
@@ -1581,13 +1427,23 @@
   <div class="modal-overlay" id="modalOverlay" onclick="closeEnlarged(event)">
     <div class="modal-content" onclick="event.stopPropagation()">
       <div class="modal-header">
-        <h3 id="modalTitle">Cam Feed</h3>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <h3 id="modalTitle">Cam Feed</h3>
+          <div class="cam-vision-toggle" style="margin:0;">
+            <button type="button" class="cam-mode-btn active" id="modalModeNormal" onclick="setModalVisionMode('normal')">Normal</button>
+            <button type="button" class="cam-mode-btn" id="modalModeThermal" onclick="setModalVisionMode('thermal')">Thermal</button>
+          </div>
+        </div>
         <button class="close-btn" onclick="closeEnlarged()">&times;</button>
       </div>
       <div class="modal-body" id="modalBody">
         <div class="modal-feed-wrapper" id="modalFeedWrapper">
           <video id="enlargedVideo" autoplay loop muted playsinline></video>
           <div id="modalFenceLayer"></div>
+          <div class="thermal-hud-layer">
+            <div class="thermal-reticle"></div>
+            <div class="thermal-spectrum-badge" id="modalThermalBadge">FLIR LWIR · ACTIVE</div>
+          </div>
         </div>
       </div>
     </div>
@@ -1637,35 +1493,88 @@
     const modalFenceLayer = document.getElementById('modalFenceLayer');
     let activeEnlargedKey = null;
 
-    function switchFeedTab(tabKey) {
-      const btnOptical = document.getElementById('tabBtnOptical');
-      const btnTactical = document.getElementById('tabBtnTactical');
-      const gridOptical = document.getElementById('gridOptical');
-      const gridTactical = document.getElementById('gridTactical');
+    // Camera Vision Modes State (Normal vs. Thermal FLIR)
+    const camVisionModes = {
+      'virtual_fence': 'normal',
+      'vehicle_detection': 'normal',
+      'human_detection': 'normal',
+      'anpr': 'normal',
+      'suspicious_activity': 'normal',
+      'facial_recognition': 'normal'
+    };
 
-      if (tabKey === 'tactical') {
-        btnOptical.classList.remove('active');
-        btnTactical.classList.add('active');
-        gridOptical.style.display = 'none';
-        gridTactical.style.display = 'grid';
-      } else {
-        btnTactical.classList.remove('active');
-        btnOptical.classList.add('active');
-        gridTactical.style.display = 'none';
-        gridOptical.style.display = 'grid';
+    function setCamVisionMode(feedKey, mode) {
+      camVisionModes[feedKey] = mode;
+      const card = document.getElementById('card-' + feedKey);
+      const btnNormal = document.getElementById('btn-mode-' + feedKey + '-normal');
+      const btnThermal = document.getElementById('btn-mode-' + feedKey + '-thermal');
+
+      if (card) {
+        if (mode === 'thermal') {
+          card.classList.add('thermal-mode');
+        } else {
+          card.classList.remove('thermal-mode');
+        }
+      }
+      if (btnNormal && btnThermal) {
+        btnNormal.classList.toggle('active', mode === 'normal');
+        btnThermal.classList.toggle('active', mode === 'thermal');
+      }
+
+      // Sync modal if active
+      if (activeEnlargedKey === feedKey) {
+        setModalVisionMode(mode);
+      }
+    }
+
+    function setGlobalVisionMode(mode) {
+      const btnNormal = document.getElementById('globalVisionNormal');
+      const btnThermal = document.getElementById('globalVisionThermal');
+      if (btnNormal && btnThermal) {
+        btnNormal.classList.toggle('active', mode === 'normal');
+        btnThermal.classList.toggle('active', mode === 'thermal');
+      }
+
+      Object.keys(camVisionModes).forEach(feedKey => {
+        setCamVisionMode(feedKey, mode);
+      });
+    }
+
+    function setModalVisionMode(mode) {
+      const wrapper = document.getElementById('modalFeedWrapper');
+      const btnNormal = document.getElementById('modalModeNormal');
+      const btnThermal = document.getElementById('modalModeThermal');
+
+      if (wrapper) {
+        wrapper.classList.toggle('thermal-mode', mode === 'thermal');
+      }
+      if (btnNormal && btnThermal) {
+        btnNormal.classList.toggle('active', mode === 'normal');
+        btnThermal.classList.toggle('active', mode === 'thermal');
+      }
+      if (activeEnlargedKey && camVisionModes[activeEnlargedKey] !== undefined) {
+        camVisionModes[activeEnlargedKey] = mode;
+        const card = document.getElementById('card-' + activeEnlargedKey);
+        const cardBtnNormal = document.getElementById('btn-mode-' + activeEnlargedKey + '-normal');
+        const cardBtnThermal = document.getElementById('btn-mode-' + activeEnlargedKey + '-thermal');
+        if (card) card.classList.toggle('thermal-mode', mode === 'thermal');
+        if (cardBtnNormal && cardBtnThermal) {
+          cardBtnNormal.classList.toggle('active', mode === 'normal');
+          cardBtnThermal.classList.toggle('active', mode === 'thermal');
+        }
       }
     }
 
     function openEnlarged(feedKey, title) {
       activeEnlargedKey = feedKey;
-      modalTitle.textContent = title || CAM_TITLE_MAP[feedKey] || 'Camera Feed';
+      modalTitle.textContent = title || CAM_TITLE_MAP[feedKey] || 'Cam Feed';
 
       const wrapper = document.getElementById('modalFeedWrapper');
       if (wrapper) {
         wrapper.style.aspectRatio = (feedKey === 'anpr') ? '16/9' : '4/3';
+        const currentMode = camVisionModes[feedKey] || 'normal';
+        setModalVisionMode(currentMode);
       }
-
-      const isTactical = ['thermal', 'drone', 'weapon', 'violence'].includes(feedKey);
 
       if (VIDEO_MAP[feedKey]) {
         enlargedVideo.style.display = 'block';
@@ -1676,25 +1585,9 @@
           try { enlargedVideo.currentTime = cardVideo.currentTime; } catch(e) {}
         }
         enlargedVideo.play().catch(() => {});
-        modalFenceLayer.innerHTML = '';
-      } else if (isTactical) {
-        enlargedVideo.style.display = 'none';
-        enlargedVideo.pause();
-        enlargedVideo.src = '';
-        const cardFeed = document.querySelector('#card-' + feedKey + ' .tactical-feed');
-        if (cardFeed) {
-          modalFenceLayer.innerHTML = cardFeed.outerHTML;
-          const innerFeed = modalFenceLayer.querySelector('.tactical-feed');
-          if (innerFeed) {
-            innerFeed.style.height = '100%';
-            innerFeed.style.minHeight = '380px';
-          }
-        }
-      } else {
-        enlargedVideo.style.display = 'block';
-        modalFenceLayer.innerHTML = '';
       }
 
+      modalFenceLayer.innerHTML = '';
       modalOverlay.classList.add('active');
     }
 
@@ -1703,9 +1596,10 @@
         modalOverlay.classList.remove('active');
         enlargedVideo.pause();
         enlargedVideo.src = '';
-        enlargedVideo.style.display = 'block';
         activeEnlargedKey = null;
         modalFenceLayer.innerHTML = '';
+        const wrapper = document.getElementById('modalFeedWrapper');
+        if (wrapper) wrapper.classList.remove('thermal-mode');
       }
     }
 
