@@ -1741,7 +1741,7 @@
       </div>
 
       <!-- Cam 7 -->
-      <div class="card" id="card-cam7" onclick="openEnlarged('cam7', 'Cam 7')">
+      <div class="card has-thermal-video" id="card-cam7" onclick="openEnlarged('cam7', 'Cam 7')">
         <div class="card-header">
           <h2>Cam 7</h2>
           <div class="cam-vision-toggle" onclick="event.stopPropagation()">
@@ -1912,7 +1912,7 @@
       'anpr': false,
       'suspicious_activity': false,
       'facial_recognition': false,
-      'cam7': false
+      'cam7': true
     };
 
     const normalVideoAvailable = {
@@ -1922,7 +1922,7 @@
       'anpr': true,
       'suspicious_activity': true,
       'facial_recognition': true,
-      'cam7': false
+      'cam7': true
     };
 
     function onNormalVideoError(feedKey) {
@@ -1968,11 +1968,17 @@
         if (mode === 'thermal') {
           card.classList.add('thermal-mode');
           if (thermalVideoAvailable[feedKey] && vidThermal) {
+            if (vidNormal && !isNaN(vidNormal.currentTime) && vidNormal.currentTime > 0) {
+              try { vidThermal.currentTime = vidNormal.currentTime; } catch(e){}
+            }
             vidThermal.play().catch(() => {});
           }
         } else {
           card.classList.remove('thermal-mode');
           if (vidNormal) {
+            if (vidThermal && !isNaN(vidThermal.currentTime) && vidThermal.currentTime > 0) {
+              try { vidNormal.currentTime = vidThermal.currentTime; } catch(e){}
+            }
             vidNormal.play().catch(() => {});
           }
         }
@@ -2033,8 +2039,14 @@
 
           if (thermalVideoAvailable[activeEnlargedKey]) {
             if (ph) ph.style.display = 'none';
+            const curTime = enlargedVideo.currentTime || 0;
             enlargedVideo.style.display = 'block';
-            enlargedVideo.src = thermalSrc;
+            if (!enlargedVideo.src.includes(thermalSrc)) {
+              enlargedVideo.src = thermalSrc;
+              if (curTime > 0) {
+                try { enlargedVideo.currentTime = curTime; } catch(e){}
+              }
+            }
             enlargedVideo.play().catch(() => {});
           } else {
             enlargedVideo.pause();
@@ -2059,8 +2071,15 @@
             }
           } else {
             if (normalPh) normalPh.style.display = 'none';
+            const curTime = enlargedVideo.currentTime || 0;
+            const normSrc = VIDEO_MAP[activeEnlargedKey];
             enlargedVideo.style.display = 'block';
-            enlargedVideo.src = VIDEO_MAP[activeEnlargedKey];
+            if (!enlargedVideo.src.includes(normSrc)) {
+              enlargedVideo.src = normSrc;
+              if (curTime > 0) {
+                try { enlargedVideo.currentTime = curTime; } catch(e){}
+              }
+            }
             enlargedVideo.play().catch(() => {});
           }
         }
