@@ -2155,6 +2155,9 @@
       const ph = document.getElementById('modalThermalPlaceholder');
       const meta = document.getElementById('modalThermalMeta');
       const route = document.getElementById('modalThermalRoute');
+      const normalPh = document.getElementById('modalNormalPlaceholder');
+      const normalMeta = document.getElementById('modalNormalMeta');
+      const normalRoute = document.getElementById('modalNormalRoute');
 
       if (btnNormal && btnThermal) {
         btnNormal.classList.toggle('active', mode === 'normal');
@@ -2181,31 +2184,24 @@
 
           if (thermalVideoAvailable[activeEnlargedKey]) {
             if (ph) ph.style.display = 'none';
-            const curTime = enlargedVideo.currentTime || 0;
-            enlargedVideo.style.display = 'block';
-            if (!enlargedVideo.src.includes(thermalSrc)) {
-              enlargedVideo.src = thermalSrc;
-              if (curTime > 0) {
-                try { enlargedVideo.currentTime = curTime; } catch(e){}
-              }
+            if (normalPh) normalPh.style.display = 'none';
+            if (enlargedVideoNormal && enlargedVideoThermal) {
+              try { enlargedVideoThermal.currentTime = enlargedVideoNormal.currentTime; } catch(e){}
+              enlargedVideoNormal.style.opacity = '0';
+              enlargedVideoThermal.style.opacity = '1';
+              enlargedVideoThermal.style.display = 'block';
+              enlargedVideoThermal.play().catch(() => {});
             }
-            enlargedVideo.play().catch(() => {});
           } else {
-            enlargedVideo.pause();
-            enlargedVideo.src = '';
-            enlargedVideo.style.display = 'none';
+            if (enlargedVideoNormal) enlargedVideoNormal.style.opacity = '0';
+            if (enlargedVideoThermal) enlargedVideoThermal.style.opacity = '0';
             if (ph) ph.style.display = 'flex';
           }
         } else {
           if (ph) ph.style.display = 'none';
-          const normalPh = document.getElementById('modalNormalPlaceholder');
-          const normalMeta = document.getElementById('modalNormalMeta');
-          const normalRoute = document.getElementById('modalNormalRoute');
-
           if (normalVideoAvailable[activeEnlargedKey] === false) {
-            enlargedVideo.pause();
-            enlargedVideo.src = '';
-            enlargedVideo.style.display = 'none';
+            if (enlargedVideoNormal) enlargedVideoNormal.style.opacity = '0';
+            if (enlargedVideoThermal) enlargedVideoThermal.style.opacity = '0';
             if (normalPh) {
               normalPh.style.display = 'flex';
               if (normalMeta) normalMeta.textContent = `${camTitle} · Optical Stream`;
@@ -2213,16 +2209,13 @@
             }
           } else {
             if (normalPh) normalPh.style.display = 'none';
-            const curTime = enlargedVideo.currentTime || 0;
-            const normSrc = VIDEO_MAP[activeEnlargedKey];
-            enlargedVideo.style.display = 'block';
-            if (!enlargedVideo.src.includes(normSrc)) {
-              enlargedVideo.src = normSrc;
-              if (curTime > 0) {
-                try { enlargedVideo.currentTime = curTime; } catch(e){}
-              }
+            if (enlargedVideoNormal && enlargedVideoThermal) {
+              try { enlargedVideoNormal.currentTime = enlargedVideoThermal.currentTime; } catch(e){}
+              enlargedVideoThermal.style.opacity = '0';
+              enlargedVideoNormal.style.opacity = '1';
+              enlargedVideoNormal.style.display = 'block';
+              enlargedVideoNormal.play().catch(() => {});
             }
-            enlargedVideo.play().catch(() => {});
           }
         }
       }
@@ -2235,25 +2228,71 @@
       const wrapper = document.getElementById('modalFeedWrapper');
       if (wrapper) {
         wrapper.style.aspectRatio = (feedKey === 'anpr') ? '16/9' : '4/3';
+        let fenceLayer = document.getElementById('modalFenceLayer');
+        if (!fenceLayer) {
+          fenceLayer = document.createElement('div');
+          fenceLayer.id = 'modalFenceLayer';
+          wrapper.appendChild(fenceLayer);
+        }
+        if (feedKey === 'virtual_fence') {
+          fenceLayer.innerHTML = `
+            <svg class="fence-svg" viewBox="0 0 480 270" preserveAspectRatio="none">
+              <polygon points="40,210 200,80 340,80 440,210" fill="rgba(239, 68, 68, 0.20)" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="6,4" />
+              <text x="210" y="70" fill="#f87171" font-size="12" font-weight="700" letter-spacing="1">ZONE 1 RESTRICTED</text>
+            </svg>
+          `;
+        } else {
+          fenceLayer.innerHTML = '';
+        }
       }
 
+      // Sync current playback time from the card
+      const card = document.getElementById('card-' + feedKey);
+      const cardVidNormal = card ? card.querySelector('.feed-video-normal') : null;
+      const curTime = (cardVidNormal && !isNaN(cardVidNormal.currentTime)) ? cardVidNormal.currentTime : 0;
+
+      const normSrc = VIDEO_MAP[feedKey] || '';
+      const thermSrc = THERMAL_VIDEO_MAP[feedKey] || '';
+
+      if (enlargedVideoNormal) {
+        if (!enlargedVideoNormal.src.includes(normSrc)) {
+          enlargedVideoNormal.src = normSrc;
+        }
+        try { enlargedVideoNormal.currentTime = curTime; } catch(e){}
+        enlargedVideoNormal.play().catch(() => {});
+      }
+
+      if (enlargedVideoThermal) {
+        if (!enlargedVideoThermal.src.includes(thermSrc)) {
+          enlargedVideoThermal.src = thermSrc;
+        }
+        try { enlargedVideoThermal.currentTime = curTime; } catch(e){}
+        if (thermalVideoAvailable[feedKey]) {
+          enlargedVideoThermal.play().catch(() => {});
+        }
+      }
+
+      modalOverlay.classList.add('active');
       const currentMode = camVisionModes[feedKey] || 'normal';
       setModalVisionMode(currentMode);
-
-      modalFenceLayer.innerHTML = '';
-      modalOverlay.classList.add('active');
     }
 
     function closeEnlarged(e) {
-      if (!e || e.target === modalOverlay || e.target.classList.contains('close-btn')) {
+      if (!e || e.target === modalOverlay || (e.target && e.target.classList && e.target.classList.contains('close-btn')) || typeof e === 'string' || arguments.length === 0) {
         modalOverlay.classList.remove('active');
-        enlargedVideo.pause();
-        enlargedVideo.src = '';
+        if (enlargedVideoNormal) {
+          enlargedVideoNormal.pause();
+          enlargedVideoNormal.src = '';
+        }
+        if (enlargedVideoThermal) {
+          enlargedVideoThermal.pause();
+          enlargedVideoThermal.src = '';
+        }
         activeEnlargedKey = null;
-        modalFenceLayer.innerHTML = '';
         const ph = document.getElementById('modalThermalPlaceholder');
         if (ph) ph.style.display = 'none';
-        enlargedVideo.style.display = 'block';
+        const normalPh = document.getElementById('modalNormalPlaceholder');
+        if (normalPh) normalPh.style.display = 'none';
       }
     }
 
