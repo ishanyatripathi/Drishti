@@ -886,7 +886,112 @@
       opacity: 0;
     }
 
-    
+    /* ── Demonstration Disclaimer Dialog Box ── */
+    .disclaimer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .disclaimer-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .disclaimer-modal {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      max-width: 460px;
+      width: 100%;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      transform: scale(0.96);
+      transition: transform 0.2s ease;
+      font-family: var(--font-stack) !important;
+    }
+    .disclaimer-overlay.active .disclaimer-modal {
+      transform: scale(1);
+    }
+    .disclaimer-header {
+      background: #f8fafc;
+      padding: 12px 18px;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .disclaimer-badge {
+      background: #1e3a8a;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .disclaimer-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0;
+      letter-spacing: 0.02em;
+    }
+    .disclaimer-body {
+      padding: 18px 20px;
+      color: #334155;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .disclaimer-body p {
+      margin: 0 0 10px 0;
+    }
+    .disclaimer-body p:last-child {
+      margin-bottom: 0;
+    }
+    .disclaimer-note {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed #e2e8f0;
+    }
+    .disclaimer-footer {
+      padding: 10px 18px 14px 18px;
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .btn-disclaimer-okay {
+      background: #1e3a8a;
+      color: #ffffff;
+      border: 1px solid #1e3a8a;
+      border-radius: 5px;
+      padding: 7px 24px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.1s ease;
+      font-family: var(--font-stack) !important;
+      letter-spacing: 0.03em;
+    }
+    .btn-disclaimer-okay:hover {
+      background: #1d4ed8;
+      border-color: #1d4ed8;
+    }
+    .btn-disclaimer-okay:active {
+      transform: scale(0.97);
+    }
 
     /* ── Responsive Rules for All Devices (Mobile, Tablet, Desktop) ── */
     @media (max-width: 1280px) {
@@ -1784,6 +1889,21 @@
         </div>
       </div>
     </div>
+  <!-- Demonstration Disclaimer Dialog Box -->
+  <div class="disclaimer-overlay active" id="disclaimerOverlay" onclick="if(event.target === this) dismissDisclaimer()">
+    <div class="disclaimer-modal" role="dialog" aria-modal="true" aria-labelledby="disclaimerTitle">
+      <div class="disclaimer-header">
+        <span class="disclaimer-badge">Notice</span>
+        <h3 class="disclaimer-title" id="disclaimerTitle">Demonstration Disclaimer</h3>
+      </div>
+      <div class="disclaimer-body">
+        <p>This project is fully offline. For demo purposes, we have hosted this as a static frontend.</p>
+        <p class="disclaimer-note">यह परियोजना पूरी तरह से ऑफ़लाइन है। प्रदर्शन उद्देश्यों के लिए, हमने इसे स्टैटिक फ़्रंटएंड के रूप में होस्ट किया है।</p>
+      </div>
+      <div class="disclaimer-footer">
+        <button type="button" class="btn-disclaimer-okay" id="btnDisclaimerOkay" onclick="dismissDisclaimer()">Okay</button>
+      </div>
+    </div>
   </div>
 
   <!-- Google Translate Element API -->
@@ -2419,10 +2539,34 @@
       }
     }
 
+    // ── Demonstration Disclaimer Dialog Control ──
+    function dismissDisclaimer() {
+      const overlay = document.getElementById('disclaimerOverlay');
+      if (overlay) {
+        overlay.classList.remove('active');
+      }
+      try {
+        sessionStorage.setItem('drishti_disclaimer_ack', '1');
+      } catch (e) {}
+    }
+
+    try {
+      if (sessionStorage.getItem('drishti_disclaimer_ack') === '1') {
+        const overlay = document.getElementById('disclaimerOverlay');
+        if (overlay) overlay.classList.remove('active');
+      }
+    } catch (e) {}
+
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
+        dismissDisclaimer();
         closeEvents();
         closeEnlarged();
+      } else if (e.key === 'Enter') {
+        const overlay = document.getElementById('disclaimerOverlay');
+        if (overlay && overlay.classList.contains('active')) {
+          dismissDisclaimer();
+        }
       }
     });
 
