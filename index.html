@@ -893,7 +893,7 @@
       background: rgba(15, 23, 42, 0.75);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
-      z-index: 500;
+      z-index: 9999 !important;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -903,8 +903,8 @@
       transition: opacity 0.2s ease;
     }
     .disclaimer-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
+      opacity: 1 !important;
+      pointer-events: auto !important;
     }
     .disclaimer-modal {
       background: #ffffff;
@@ -1889,6 +1889,8 @@
         </div>
       </div>
     </div>
+  </div>
+
   <!-- Demonstration Disclaimer Dialog Box -->
   <div class="disclaimer-overlay active" id="disclaimerOverlay" onclick="if(event.target === this) dismissDisclaimer()">
     <div class="disclaimer-modal" role="dialog" aria-modal="true" aria-labelledby="disclaimerTitle">
@@ -2545,17 +2547,7 @@
       if (overlay) {
         overlay.classList.remove('active');
       }
-      try {
-        sessionStorage.setItem('drishti_disclaimer_ack', '1');
-      } catch (e) {}
     }
-
-    try {
-      if (sessionStorage.getItem('drishti_disclaimer_ack') === '1') {
-        const overlay = document.getElementById('disclaimerOverlay');
-        if (overlay) overlay.classList.remove('active');
-      }
-    } catch (e) {}
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
